@@ -12,22 +12,13 @@ import SpriteKit
 struct PiecePreviewView: View {
     var piece: WonkyTetronimo
 
-    // TODO: The scene should probably be created in some sort of state object,
-    // not a part of this view struct because we don't want it to get recreated on every input change.
-    var spriteScene: SKScene {
-        print("create scene")
-        let scene = SKScene(size: CGSize(width: 300, height: 300))
-
-        scene.isPaused = false
-        scene.addChild(piece)
-        piece.position = CGPoint(x: 150 - (piece.center.x), y: 150 - piece.center.y)
-        scene.isPaused = true
-
-        return scene
-    }
+    @StateObject var spriteScene = WonkyPiecePreviewScene(size: CGSize(width: 300, height: 300))
     
     var body: some View {
         SpriteView(scene: self.spriteScene)
+            .onChange(of: piece) { value in
+                spriteScene.changePiece(to: value)
+            }
     }
 }
 
@@ -35,5 +26,14 @@ struct PiecePreviewView_Previews: PreviewProvider {
     static var previews: some View {
         PiecePreviewView(piece: WonkyTetronimo(grid: tetronimoShapes[0]))
         .scaledToFit()
+    }
+}
+
+class WonkyPiecePreviewScene: SKScene, ObservableObject {
+    func changePiece(to newPiece: WonkyTetronimo) {
+        self.isPaused = false
+        self.addChild(newPiece)
+        newPiece.position = CGPoint(x: 150 - (newPiece.center.x), y: 150 - newPiece.center.y)
+        self.isPaused = true
     }
 }
