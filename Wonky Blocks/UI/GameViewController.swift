@@ -139,7 +139,7 @@ class WonkyGameViewController: UIViewController {
         var rowInfo: [(rowOffset: Int, rowCount: Int)] = []
         for removingRow in numbersArray.enumerated() {
             let lastRowValue = removingRow.offset == 0 ? -1 : numbersArray[removingRow.offset - 1]
-            if removingRow.offset == 0 || removingRow.element != lastRowValue {
+            if removingRow.offset == 0 || removingRow.element != lastRowValue + 1 {
                 // if it's the first row, or not part of the same group as the last row, add an element to the result that spans one row.
                 rowInfo.append((removingRow.element, 1))
             } else {
