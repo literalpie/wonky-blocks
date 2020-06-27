@@ -9,8 +9,7 @@
 /* Begin PBXBuildFile section */
 		453EDD6224998982006470E7 /* Joystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453EDD6124998982006470E7 /* Joystick.swift */; };
 		453FBC7D249AE0310056E4D7 /* SwiftClipper in Frameworks */ = {isa = PBXBuildFile; productRef = 453FBC7C249AE0310056E4D7 /* SwiftClipper */; };
-		45525A69244C7FD4004974AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45525A68244C7FD4004974AB /* AppDelegate.swift */; };
-		45525A6B244C7FD4004974AB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45525A6A244C7FD4004974AB /* SceneDelegate.swift */; };
+		45525A69244C7FD4004974AB /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45525A68244C7FD4004974AB /* App.swift */; };
 		45525A6F244C7FD9004974AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45525A6E244C7FD9004974AB /* Assets.xcassets */; };
 		45525A72244C7FD9004974AB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45525A71244C7FD9004974AB /* Preview Assets.xcassets */; };
 		45525A75244C7FD9004974AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45525A73244C7FD9004974AB /* LaunchScreen.storyboard */; };
@@ -38,8 +37,7 @@
 		453EDD6124998982006470E7 /* Joystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joystick.swift; sourceTree = "<group>"; };
 		453FBC7A249ADEB20056E4D7 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		45525A65244C7FD4004974AB /* Wonky Blocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wonky Blocks.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		45525A68244C7FD4004974AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		45525A6A244C7FD4004974AB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		45525A68244C7FD4004974AB /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		45525A6E244C7FD9004974AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		45525A71244C7FD9004974AB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		45525A74244C7FD9004974AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -110,8 +108,7 @@
 				45A248AA249658560030EC50 /* UI */,
 				45A248A92496580D0030EC50 /* Support */,
 				456A80E4244D013F00E5E119 /* Wonky Blocks.entitlements */,
-				45525A68244C7FD4004974AB /* AppDelegate.swift */,
-				45525A6A244C7FD4004974AB /* SceneDelegate.swift */,
+				45525A68244C7FD4004974AB /* App.swift */,
 				45525A6E244C7FD9004974AB /* Assets.xcassets */,
 				45525A73244C7FD9004974AB /* LaunchScreen.storyboard */,
 				45525A76244C7FD9004974AB /* Info.plist */,
@@ -248,7 +245,7 @@
 			files = (
 				453EDD6224998982006470E7 /* Joystick.swift in Sources */,
 				45A248A2249656E10030EC50 /* GamePhysicsController.swift in Sources */,
-				45525A69244C7FD4004974AB /* AppDelegate.swift in Sources */,
+				45525A69244C7FD4004974AB /* App.swift in Sources */,
 				45A248C124965B3C0030EC50 /* WonkyRow.swift in Sources */,
 				45A248AC2496586C0030EC50 /* RootView.swift in Sources */,
 				45A248B2249658D80030EC50 /* GameView.swift in Sources */,
@@ -258,7 +255,6 @@
 				45A248B7249659A90030EC50 /* WonkyGameBoard.swift in Sources */,
 				45A248A6249657700030EC50 /* tetronimoShapes.swift in Sources */,
 				45A248AE2496588B0030EC50 /* PiecePreviewView.swift in Sources */,
-				45525A6B244C7FD4004974AB /* SceneDelegate.swift in Sources */,
 				45A248C324965B890030EC50 /* extensions.swift in Sources */,
 				45BEC136244E5D6400B38F83 /* SwiftClipperPath+asCgPath.swift in Sources */,
 				45A248BF24965B200030EC50 /* WonkyTetronimo.swift in Sources */,
@@ -334,7 +330,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -388,7 +384,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -403,6 +399,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Wonky Blocks/Wonky Blocks.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Wonky Blocks/Preview Content\"";
@@ -426,6 +423,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Wonky Blocks/Wonky Blocks.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Wonky Blocks/Preview Content\"";

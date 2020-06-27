@@ -9,41 +9,25 @@
 import SwiftUI
 import SpriteKit
 
-struct PiecePreviewView: UIViewRepresentable {
-    func makeCoordinator() -> Coordinator {
-        return Coordinator(view: SKView())
-    }
+struct PiecePreviewView: View {
     var piece: WonkyTetronimo
 
-    func makeUIView(context: Context) -> SKView {
+    // TODO: The scene should probably be created in some sort of state object,
+    // not a part of this view struct because we don't want it to get recreated on every input change.
+    var spriteScene: SKScene {
+        print("create scene")
         let scene = SKScene(size: CGSize(width: 300, height: 300))
-        let view = context.coordinator.view
-        view.presentScene(scene)
-        position(piece, in: scene)
-        return view
-    }
 
-    func updateUIView(_ uiView: SKView, context: Context) {
-        let view = context.coordinator.view
-        guard let scene = view.scene else {return}
-        if view.scene?.children.firstIndex(of: piece) == nil {
-            position(piece, in: scene)
-        }
-    }
-    
-    func position(_ piece: WonkyTetronimo, in scene: SKScene) {
         scene.isPaused = false
-        piece.removeFromParent()
         scene.addChild(piece)
         piece.position = CGPoint(x: 150 - (piece.center.x), y: 150 - piece.center.y)
         scene.isPaused = true
-    }
 
-    class Coordinator {
-        let view: SKView
-        init(view: SKView) {
-            self.view = view
-        }
+        return scene
+    }
+    
+    var body: some View {
+        SpriteView(scene: self.spriteScene)
     }
 }
 
