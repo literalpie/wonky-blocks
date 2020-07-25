@@ -51,7 +51,7 @@ class WonkyGameViewController: UIViewController {
         let timerCan = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect().sink { (_) in
             DispatchQueue.global(qos: .background).async {
                 // gets the percentage that each row is filled compared to the target required to clear a row
-                let rowStates = self.rows.map{$0.calculateRowArea() / 1500 }
+                let rowStates = self.rows.map{$0.calculateRowArea() / 1450 }
                 DispatchQueue.main.async {
                     self.rowIndicatorSpace.updateAllRowIndicators(rowStates: rowStates)
                 }
@@ -62,8 +62,10 @@ class WonkyGameViewController: UIViewController {
         // Remove any rows that are full
         let contactCan = physicsController.activePieceContact.sink { _ in
             guard let activeTet = self.spriteKitView.scene?.childNode(withName: "activeTet") else { return }
+            // if the last piece is at too high a position when contact is made, end the game
             guard self.spriteKitView.scene?.childNode(withName: "activeTet")?.position.y ?? 0 <= 750 else {
                 self.physicsController.activePiece?.makeInactive()
+                self.gameState.endGame()
                 return
             }
             /// tetromonimos that intesect with a row we are removing
@@ -74,8 +76,8 @@ class WonkyGameViewController: UIViewController {
             var rowStates: [CGFloat] = []
             self.rows.enumerated().forEach { row in
                 let area = row.element.calculateRowArea()
-                rowStates.append(area / 1500)
-                if area > 15000 {
+                rowStates.append(area / 1450)
+                if area > 14500 {
                     let newCandidates = row.element.physicsBody!.allContactedBodies().compactMap{ $0.node }
                     breakageCandidates.append(contentsOf: newCandidates)
                     removingRows.append(row.offset)

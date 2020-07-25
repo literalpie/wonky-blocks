@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		453EDD6224998982006470E7 /* Joystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453EDD6124998982006470E7 /* Joystick.swift */; };
 		453FBC7D249AE0310056E4D7 /* SwiftClipper in Frameworks */ = {isa = PBXBuildFile; productRef = 453FBC7C249AE0310056E4D7 /* SwiftClipper */; };
+		4542A9EB24AF76D900B8A92A /* IntersectionClippingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4542A9EA24AF76D900B8A92A /* IntersectionClippingView.swift */; };
 		45525A69244C7FD4004974AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45525A68244C7FD4004974AB /* AppDelegate.swift */; };
 		45525A6B244C7FD4004974AB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45525A6A244C7FD4004974AB /* SceneDelegate.swift */; };
 		45525A6F244C7FD9004974AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45525A6E244C7FD9004974AB /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		453EDD6124998982006470E7 /* Joystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joystick.swift; sourceTree = "<group>"; };
 		453FBC7A249ADEB20056E4D7 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
+		4542A9EA24AF76D900B8A92A /* IntersectionClippingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntersectionClippingView.swift; sourceTree = "<group>"; };
 		45525A65244C7FD4004974AB /* Wonky Blocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wonky Blocks.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		45525A68244C7FD4004974AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45525A6A244C7FD4004974AB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				45A248B1249658D80030EC50 /* GameView.swift */,
 				45A248BC24965AF30030EC50 /* GameViewController.swift */,
 				453EDD6124998982006470E7 /* Joystick.swift */,
+				4542A9EA24AF76D900B8A92A /* IntersectionClippingView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				45A248A6249657700030EC50 /* tetronimoShapes.swift in Sources */,
 				45A248AE2496588B0030EC50 /* PiecePreviewView.swift in Sources */,
 				45525A6B244C7FD4004974AB /* SceneDelegate.swift in Sources */,
+				4542A9EB24AF76D900B8A92A /* IntersectionClippingView.swift in Sources */,
 				45A248C324965B890030EC50 /* extensions.swift in Sources */,
 				45BEC136244E5D6400B38F83 /* SwiftClipperPath+asCgPath.swift in Sources */,
 				45A248BF24965B200030EC50 /* WonkyTetronimo.swift in Sources */,

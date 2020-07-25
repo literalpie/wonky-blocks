@@ -7,14 +7,27 @@
 //
 
 import Combine
+import Foundation
+
+class UserDefaultsObject: ObservableObject {
+    @Published var highScore = UserDefaults.standard.integer(forKey: "High Score")
+    func setHighScore(to newValue: Int) {
+        UserDefaults.standard.set(newValue, forKey: "High Score")
+        self.highScore = newValue
+    }
+}
 
 class WonkyGameState: ObservableObject {
+    var userDefaults: UserDefaultsObject = UserDefaultsObject()
     @Published var score = 0
     @Published var lineCount = 0
     @Published var level = 1
+    @Published var gameOver = false
+    @Published var newHighScore = false
 
     @Published var activeTet: WonkyTetronimo = WonkyTetronimo(grid: tetronimoShapes.randomElement()!)
     @Published var nextTet: WonkyTetronimo = WonkyTetronimo(grid: tetronimoShapes.randomElement()!)
+    
 
     func linesCleared(_ lineCount: Int) {
         self.lineCount += lineCount
@@ -47,6 +60,25 @@ class WonkyGameState: ObservableObject {
         nextTet.removeFromParent()
         activeTet = nextTet
         activeTet.makeActive()
+        nextTet = WonkyTetronimo(grid: tetronimoShapes.randomElement()!)
+    }
+    
+    func endGame() {
+        let highScore = userDefaults.highScore
+        if score > highScore {
+            newHighScore = true
+            userDefaults.setHighScore(to: score)
+        }
+        gameOver = true
+    }
+    
+    func reset() {
+        score = 0
+        lineCount = 0
+        level = 1
+        gameOver = false
+        newHighScore = false
+        activeTet = nextTet
         nextTet = WonkyTetronimo(grid: tetronimoShapes.randomElement()!)
     }
 }

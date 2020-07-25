@@ -18,17 +18,28 @@ struct RootView: View {
         GeometryReader { (size: GeometryProxy) in
             ZStack {
                 VStack {
-                    if size.size.width <= size.size.height  {
+                    if size.size.width <= size.size.height || gameState.gameOver  {
                         HStack {
                             ScoreBoardView()
-                            PiecePreviewView(piece: self.gameState.nextTet)
-                                .frame(maxWidth: 150, maxHeight: 150)
+                            if !gameState.gameOver {
+                                PiecePreviewView(piece: self.gameState.nextTet)
+                                    .frame(maxWidth: 150, maxHeight: 150)
+                            }
                         }
                     }
                     HStack {
-                        // We don't want to if/else this whole things because GameView needs to stay created
-                        GameView(joyState: self.$joyState, rotateState: self.$rotateState)
-                        if size.size.width > size.size.height  {
+                        if gameState.gameOver {
+                            VStack {
+                                Text("Game Over").font(.title)
+                                if gameState.newHighScore {
+                                    Text("New High Score: \(gameState.score)")
+                                }
+                                Button("Restart Game", action: self.gameState.reset)
+                            }
+                        } else {
+                            GameView(joyState: self.$joyState, rotateState: self.$rotateState)
+                        }
+                        if size.size.width > size.size.height && !gameState.gameOver  {
                             VStack {
                                 ScoreBoardView()
                                 PiecePreviewView(piece: self.gameState.nextTet)
@@ -38,9 +49,12 @@ struct RootView: View {
                         }
                     }
                 }
-                HStack(spacing: 0) {
-                    Joystick(state: self.$joyState, radius: 50)
-                    Joystick(state: self.$rotateState, radius: 50)
+                // we don't want this to get in the way of button presses
+                if !gameState.gameOver {
+                    HStack(spacing: 0) {
+                        Joystick(state: self.$joyState, radius: 50)
+                        Joystick(state: self.$rotateState, radius: 50)
+                    }
                 }
             }
             .background(Color(UIColor.systemBackground))

@@ -11,12 +11,17 @@ import SwiftUI
 
 struct ScoreBoardView: View {
     @EnvironmentObject var gameState: WonkyGameState
+    var highScore: Int {
+        gameState.userDefaults.highScore
+    }
 
     var body: some View {
         VStack(alignment: .leading) {
             Text("Score: \(gameState.score)")
+                .foregroundColor(gameState.score > highScore ? Color.green : Color.primary)
             Text("Lines Cleared: \(gameState.lineCount)")
             Text("Level: \(gameState.level)")
+            Text("High Score: \(highScore)")
         }
     }
 }
