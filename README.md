@@ -4,6 +4,8 @@ Inspired by [Not Tetris 2](https://stabyourself.net/nottetris2/), made for Apple
 
 > It's got all the upsides of Tetris and all the downsides of physics
 
+![short animation showing a tetris piece dropping, and a line getting cleared](./Documentation/preview.gif)
+
 ## How to Play
 Your goal is to last as long as possible without letting the pile reach the top of the board by removing as many lines as possible. A line is removed when the area of pieces in the row is high enough. Gain more points by removing multiple lines at once. Unlike normal Tetris, pieces do not rotate in 90 degree increments or fall one line at a time.
 
