@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import SwiftClipper
 
 class WonkyTetronimo: SKShapeNode {
     var center: CGPoint {
@@ -33,6 +34,8 @@ class WonkyTetronimo: SKShapeNode {
                     // unfortunately, this also causes things to "catch" on each other occasionally.
                     let path = CGPath(rect: CGRect(x: row.offset * 50, y: col.offset * 50, width: 48, height: 48), transform: nil)
                     let square = SKShapeNode(path: path)
+                    square.userData = NSMutableDictionary()
+                    square.userData?.setValue(path.getPathElementsPoints().asClockwise().centroid, forKey: "center")
                     square.lineWidth = 1
                     square.fillColor = .blue
                     square.strokeColor = .clear
@@ -48,14 +51,17 @@ class WonkyTetronimo: SKShapeNode {
     }
 
     /// creates a tetronimo from a collection of paths. Used to create a tetronimo that replaces a piece that's been chopped up by a removed line.
-    convenience init(with childrenPaths: [CGPath]) {
+    /// the orignal center point of each path is also saved into the userData of the nodes
+    convenience init(with childrenPaths: [(path: Path, center: CGPoint)]) {
         self.init()
         let children = childrenPaths.compactMap{(path) -> (SKPhysicsBody, SKShapeNode)? in
-            guard let physicsBody = SKPhysicsBody(polygonFrom: path) as SKPhysicsBody?  else {
+            guard let physicsBody = SKPhysicsBody(polygonFrom: path.path.asCgPath()) as SKPhysicsBody?  else {
                 // sometimes physics bodies fail to create from paths - we don't seem to miss any important nodes because of this.
                 return nil
             }
-            let diffNode = SKShapeNode(path: path)
+            let diffNode = SKShapeNode(path: path.path.asCgPath())
+            diffNode.userData = NSMutableDictionary()
+            diffNode.userData?.setValue(path.path.asClockwise().centroid, forKey: "center")
             diffNode.fillColor = .blue
             diffNode.lineWidth = 1
             diffNode.strokeColor = .clear

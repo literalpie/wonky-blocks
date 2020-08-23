@@ -37,7 +37,6 @@
 /* Begin PBXFileReference section */
 		45332F4C24ECA5D900F7A72C /* preview.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = preview.gif; sourceTree = "<group>"; };
 		453EDD6124998982006470E7 /* Joystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joystick.swift; sourceTree = "<group>"; };
-		453FBC7A249ADEB20056E4D7 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		45525A65244C7FD4004974AB /* Wonky Blocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wonky Blocks.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		45525A68244C7FD4004974AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45525A6A244C7FD4004974AB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,7 +88,6 @@
 		45332F4924ECA14500F7A72C /* Documentation */ = {
 			isa = PBXGroup;
 			children = (
-				453FBC7A249ADEB20056E4D7 /* TODO.md */,
 				45332F4C24ECA5D900F7A72C /* preview.gif */,
 			);
 			path = Documentation;

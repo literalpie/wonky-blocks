@@ -39,7 +39,7 @@ class WonkyRow: SKShapeNode {
             // take the sum of the area of the intersection between every piece and the row.
             var totalArea = soFar
             current.node?.childrenPositionPaths.forEach { childNodePath in
-                let intersect = self.path?.getPathElementsPoints().intersection(childNodePath.getPathElementsPoints())
+                let intersect = self.path?.getPathElementsPoints().intersection(childNodePath.path.getPathElementsPoints())
                 intersect?.forEach({ (path) in
                     totalArea += -path.asClockwise().area
                 })

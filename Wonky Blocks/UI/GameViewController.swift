@@ -9,6 +9,7 @@
 import UIKit
 import SpriteKit
 import Combine
+import SwiftClipper
 
 class WonkyGameViewController: UIViewController {
     var spriteKitView: SKView {
@@ -159,8 +160,8 @@ class WonkyGameViewController: UIViewController {
         contactingBodies.forEach({ (intersectingNode) in
             // This will go through each of the bodies that intersects the row being removed.
             // collect the paths that will make up the piece above and below the removed row.
-            var belowPaths: [CGPath] = []
-            var abovePaths: [CGPath] = []
+            var belowPaths: [(path: Path, center: CGPoint)] = []
+            var abovePaths: [(path: Path, center: CGPoint)] = []
 
             // One square of the tetronimo
             intersectingNode.childrenPositionPaths.forEach { intChildPath in
@@ -169,31 +170,76 @@ class WonkyGameViewController: UIViewController {
                 var rowTranslateTransform =  CGAffineTransform(translationX: fromRow.position.x, y: fromRow.position.y)
                 let transformedRowPath = fromRow.path?.copy(using: &rowTranslateTransform)
 
-                let difference = intChildPath.getPathElementsPoints().difference((transformedRowPath!.getPathElementsPoints()))
+                let difference = intChildPath.path.getPathElementsPoints().difference((transformedRowPath!.getPathElementsPoints()))
                 difference.forEach({ (differencePiece) in
                     // Area only seems to be accurate when the points of the path are clockwise.
                     // If the remaining are of the piece is very small (less than 50 area), we will remove it completely.
                     if differencePiece.asClockwise().area > 50 || differencePiece.asClockwise().area < -50 {
                         if differencePiece.first!.y > fromRow.position.y {
-                            abovePaths.append(differencePiece.asCgPath())
+                            abovePaths.append((differencePiece, intChildPath.center))
                         } else {
-                            belowPaths.append(differencePiece.asCgPath())
+                            belowPaths.append((differencePiece, intChildPath.center))
                         }
                     }
                 })
             }
             if !abovePaths.isEmpty {
-                let newNode = WonkyTetronimo(with: abovePaths)
-                resultNodes.append(newNode)
-                newNode.physicsBody?.affectedByGravity = true
+                let fragments = groupFragments(from: abovePaths)
+                fragments.forEach { (fragment) in
+                    let newNode = WonkyTetronimo(with: fragment)
+                    resultNodes.append(newNode)
+                    newNode.physicsBody?.affectedByGravity = true
+                }
             }
             if !belowPaths.isEmpty {
-                let newNodeBelow = WonkyTetronimo(with: belowPaths)
-                resultNodes.append(newNodeBelow)
-                newNodeBelow.physicsBody?.affectedByGravity = true
+                let fragments = groupFragments(from: belowPaths)
+                fragments.forEach { (fragment) in
+                    let newNode = WonkyTetronimo(with: fragment)
+                    resultNodes.append(newNode)
+                    newNode.physicsBody?.affectedByGravity = true
+                }
             }
             breakingNodes.append(intersectingNode)
         })
         return (resultNodes, breakingNodes)
+    }
+    
+    /// given some shape paths, return the same paths with touching shapes grouped together.
+    func groupFragments(from paths: [(path: SwiftClipper.Path, center: CGPoint)]) -> [[(path: SwiftClipper.Path, center: CGPoint)]] {
+        /// each element is a group of paths, and the node's original center (used to determine connection)
+        var allPathGroups: [[(path: SwiftClipper.Path, center: CGPoint)]] = []
+        paths.forEach { path in
+            let touchingPieces = allPathGroups.enumerated().filter { existingPath in
+                let matchingPaths = existingPath.element.filter { existingPathPiece in
+                    
+                    let distance = path.center.distance(to: existingPathPiece.center)
+                    return distance < 60
+                }
+    //            print(matchingPaths.count, path.center)
+                return existingPath.element.first { existingPathPiece in
+                    
+                    let distance = path.center.distance(to: existingPathPiece.center)
+                    print(distance)
+                    return distance < 60
+                } != nil
+            }
+            print("touching pieces? \(touchingPieces.count)")
+            if touchingPieces.count > 1 {
+                // Some pieces were previously put in separate groups, but this new path connects them.
+                if touchingPieces.count > 2 {
+                    print("warning, more than 2 touching pieces, but only 2 will be merged")
+                }
+                let pieceToMerge = allPathGroups.remove(at: touchingPieces[1].offset)
+                allPathGroups[touchingPieces[0].offset].append(contentsOf: pieceToMerge)
+                allPathGroups[touchingPieces[0].offset].append(path)
+            } else if let touchingPiece = touchingPieces.first?.offset {
+                // path is touching a path within touchingPiece, so add it to the same piece.
+                allPathGroups[touchingPiece].append(path)
+            } else {
+                // path isn't touching any of the existing pieces, so make a new one with this new path.
+                allPathGroups.append([path])
+            }
+        }
+        return allPathGroups
     }
 }
