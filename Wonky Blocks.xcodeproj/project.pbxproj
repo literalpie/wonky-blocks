@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0088A4002527453200A1035F /* ColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0088A3FF2527453200A1035F /* ColorTheme.swift */; };
+		0088A40425274A0D00A1035F /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0088A40325274A0D00A1035F /* UIColor+Hex.swift */; };
 		453EDD6224998982006470E7 /* Joystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453EDD6124998982006470E7 /* Joystick.swift */; };
 		453FBC7D249AE0310056E4D7 /* SwiftClipper in Frameworks */ = {isa = PBXBuildFile; productRef = 453FBC7C249AE0310056E4D7 /* SwiftClipper */; };
 		45525A69244C7FD4004974AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45525A68244C7FD4004974AB /* AppDelegate.swift */; };
@@ -35,6 +37,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0088A3FF2527453200A1035F /* ColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTheme.swift; sourceTree = "<group>"; };
+		0088A40325274A0D00A1035F /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		45332F4C24ECA5D900F7A72C /* preview.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = preview.gif; sourceTree = "<group>"; };
 		453EDD6124998982006470E7 /* Joystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joystick.swift; sourceTree = "<group>"; };
 		45525A65244C7FD4004974AB /* Wonky Blocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wonky Blocks.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +82,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0088A40625275EA000A1035F /* color */ = {
+			isa = PBXGroup;
+			children = (
+				0088A3FF2527453200A1035F /* ColorTheme.swift */,
+				0088A40325274A0D00A1035F /* UIColor+Hex.swift */,
+			);
+			path = color;
+			sourceTree = "<group>";
+		};
 		451B41B3246766FE007D559A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +152,7 @@
 		45A248A92496580D0030EC50 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				0088A40625275EA000A1035F /* color */,
 				45BEC135244E5D6400B38F83 /* SwiftClipperPath+asCgPath.swift */,
 				45A248A1249656E10030EC50 /* GamePhysicsController.swift */,
 				45A248A3249657210030EC50 /* GamePhysicsController+keyboardControls.swift */,
@@ -256,6 +270,7 @@
 			files = (
 				453EDD6224998982006470E7 /* Joystick.swift in Sources */,
 				45A248A2249656E10030EC50 /* GamePhysicsController.swift in Sources */,
+				0088A40425274A0D00A1035F /* UIColor+Hex.swift in Sources */,
 				45525A69244C7FD4004974AB /* AppDelegate.swift in Sources */,
 				45A248C124965B3C0030EC50 /* WonkyRow.swift in Sources */,
 				45A248AC2496586C0030EC50 /* RootView.swift in Sources */,
@@ -273,6 +288,7 @@
 				45A248B4249659180030EC50 /* GameState.swift in Sources */,
 				45A248B0249658B60030EC50 /* ScoreBoardView.swift in Sources */,
 				45A248B9249659D90030EC50 /* WonkyRowIndicator.swift in Sources */,
+				0088A4002527453200A1035F /* ColorTheme.swift in Sources */,
 				45A248BD24965AF30030EC50 /* GameViewController.swift in Sources */,
 				45A248C524965BB40030EC50 /* physicsCategories.swift in Sources */,
 			);
