@@ -19,13 +19,9 @@ class WonkyTetronimo: SKShapeNode {
         return center
     }
 
-    override init() {
-        super.init()
-    }
-
     /// initialize using a grid of rows and columns indicating whether each position should include a block or be empty
-    convenience init(grid: [[Bool]]) {
-        self.init()
+    init(grid: [[Bool]], color: UIColor = currentTheme.randomColor) {
+        super.init()
         var physicsBodies: [SKPhysicsBody] = []
         for col in grid.enumerated() {
             for row in col.element.enumerated() {
@@ -37,7 +33,7 @@ class WonkyTetronimo: SKShapeNode {
                     square.userData = NSMutableDictionary()
                     square.userData?.setValue(path.getPathElementsPoints().asClockwise().centroid, forKey: "center")
                     square.lineWidth = 1
-                    square.fillColor = .blue
+                    square.fillColor = color
                     square.strokeColor = .clear
                     let physicsBody = SKPhysicsBody(polygonFrom: path)
 
@@ -47,13 +43,13 @@ class WonkyTetronimo: SKShapeNode {
             }
         }
         self.physicsBody = SKPhysicsBody(bodies: physicsBodies)
-        self.setup()
+        self.setup(color: color)
     }
 
     /// creates a tetronimo from a collection of paths. Used to create a tetronimo that replaces a piece that's been chopped up by a removed line.
     /// the orignal center point of each path is also saved into the userData of the nodes
-    convenience init(with childrenPaths: [(path: Path, center: CGPoint)]) {
-        self.init()
+    init(with childrenPaths: [(path: Path, center: CGPoint)], color: UIColor = currentTheme.randomColor) {
+        super.init()
         let children = childrenPaths.compactMap{(path) -> (SKPhysicsBody, SKShapeNode)? in
             guard let physicsBody = SKPhysicsBody(polygonFrom: path.path.asCgPath()) as SKPhysicsBody?  else {
                 // sometimes physics bodies fail to create from paths - we don't seem to miss any important nodes because of this.
@@ -62,7 +58,7 @@ class WonkyTetronimo: SKShapeNode {
             let diffNode = SKShapeNode(path: path.path.asCgPath())
             diffNode.userData = NSMutableDictionary()
             diffNode.userData?.setValue(path.path.asClockwise().centroid, forKey: "center")
-            diffNode.fillColor = .blue
+            diffNode.fillColor = color
             diffNode.lineWidth = 1
             diffNode.strokeColor = .clear
             return (physicsBody, diffNode)
@@ -71,10 +67,10 @@ class WonkyTetronimo: SKShapeNode {
             self.addChild(node)
         }
         self.physicsBody = SKPhysicsBody(bodies: children.map{$0.0})
-        self.setup()
+        self.setup(color: color)
     }
 
-    private func setup() {
+    private func setup(color: UIColor) {
         physicsBody?.affectedByGravity = false
         physicsBody?.categoryBitMask = tetCategory
         physicsBody?.contactTestBitMask = tetCategory | rowCategory
@@ -85,7 +81,7 @@ class WonkyTetronimo: SKShapeNode {
         physicsBody?.restitution = 0.05
 
         name = "tet"
-        fillColor = .blue
+        fillColor = color
     }
 
     required init?(coder aDecoder: NSCoder) {
