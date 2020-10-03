@@ -84,6 +84,10 @@ class WonkyGameViewController: UIViewController {
                     removingRows.append(row.offset)
                 }
             }
+            /// uncomment to clear debug line every time contact is made
+//            let debugLine = 0
+//            removingRows = [debugLine]
+//            breakageCandidates = self.rows[debugLine].physicsBody!.allContactedBodies().compactMap{$0.node}
             self.rowIndicatorSpace.updateAllRowIndicators(rowStates: rowStates)
             breakageCandidates = breakageCandidates.uniques
             if !removingRows.isEmpty {
@@ -210,12 +214,6 @@ class WonkyGameViewController: UIViewController {
         var allPathGroups: [[(path: SwiftClipper.Path, center: CGPoint)]] = []
         paths.forEach { path in
             let touchingPieces = allPathGroups.enumerated().filter { existingPath in
-                let matchingPaths = existingPath.element.filter { existingPathPiece in
-                    
-                    let distance = path.center.distance(to: existingPathPiece.center)
-                    return distance < 60
-                }
-    //            print(matchingPaths.count, path.center)
                 return existingPath.element.first { existingPathPiece in
                     
                     let distance = path.center.distance(to: existingPathPiece.center)
@@ -223,7 +221,6 @@ class WonkyGameViewController: UIViewController {
                     return distance < 60
                 } != nil
             }
-            print("touching pieces? \(touchingPieces.count)")
             if touchingPieces.count > 1 {
                 // Some pieces were previously put in separate groups, but this new path connects them.
                 if touchingPieces.count > 2 {

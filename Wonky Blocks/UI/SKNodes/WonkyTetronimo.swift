@@ -57,7 +57,7 @@ class WonkyTetronimo: SKShapeNode {
             }
             let diffNode = SKShapeNode(path: path.path.asCgPath())
             diffNode.userData = NSMutableDictionary()
-            diffNode.userData?.setValue(path.path.asClockwise().centroid, forKey: "center")
+            diffNode.userData?.setValue(path.center, forKey: "center")
             diffNode.fillColor = color
             diffNode.lineWidth = 1
             diffNode.strokeColor = .clear

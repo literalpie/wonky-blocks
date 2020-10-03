@@ -23,7 +23,7 @@ extension SKNode {
         return self.children.compactMap{ child in
             if let childPath = (child as? SKShapeNode)?.path,
                let center = child.userData?.value(forKey: "center") as? CGPoint,
-                let transformedPath = childPath.rotateAroundCenter(path: childPath, float: self.zRotation) {
+               let transformedPath = childPath.rotateAroundCenter(path: childPath, float: self.zRotation) {
                 var translateTransform = CGAffineTransform(translationX: self.position.x, y: self.position.y)
 
                 return ((path: transformedPath.copy(using: &translateTransform), center: center) as! (path: CGPath, center: CGPoint))
