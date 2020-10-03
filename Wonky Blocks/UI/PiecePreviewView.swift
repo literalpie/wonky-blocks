@@ -49,7 +49,7 @@ struct PiecePreviewView: UIViewRepresentable {
 
 struct PiecePreviewView_Previews: PreviewProvider {
     static var previews: some View {
-        PiecePreviewView(piece: WonkyTetronimo(grid: tetronimoShapes[0]))
+        PiecePreviewView(piece: WonkyTetronimo(WonkyTetronimo.tetronimoTypes[0]))
         .scaledToFit()
     }
 }

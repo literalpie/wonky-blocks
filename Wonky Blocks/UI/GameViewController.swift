@@ -187,10 +187,11 @@ class WonkyGameViewController: UIViewController {
                     }
                 })
             }
+            let color = (intersectingNode as? WonkyTetronimo)?.color ?? .white
             if !abovePaths.isEmpty {
                 let fragments = groupFragments(from: abovePaths)
                 fragments.forEach { (fragment) in
-                    let newNode = WonkyTetronimo(with: fragment)
+                    let newNode = WonkyTetronimo(with: fragment, color: color)
                     resultNodes.append(newNode)
                     newNode.physicsBody?.affectedByGravity = true
                 }
@@ -198,7 +199,7 @@ class WonkyGameViewController: UIViewController {
             if !belowPaths.isEmpty {
                 let fragments = groupFragments(from: belowPaths)
                 fragments.forEach { (fragment) in
-                    let newNode = WonkyTetronimo(with: fragment)
+                    let newNode = WonkyTetronimo(with: fragment, color: color)
                     resultNodes.append(newNode)
                     newNode.physicsBody?.affectedByGravity = true
                 }

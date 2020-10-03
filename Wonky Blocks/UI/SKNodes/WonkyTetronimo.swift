@@ -18,12 +18,18 @@ class WonkyTetronimo: SKShapeNode {
         let center = CGPoint(x: midX + 25, y: midY + 25)
         return center
     }
+    var color: UIColor
+    
+    static func randomTetronimo() -> WonkyTetronimo {
+        return self.init(WonkyTetronimo.tetronimoTypes.randomElement()!)
+    }
 
     /// initialize using a grid of rows and columns indicating whether each position should include a block or be empty
-    init(grid: [[Bool]], color: UIColor = currentTheme.randomColor) {
+    required init(_ tet: TetronimoType) {
+        self.color = tet.color
         super.init()
         var physicsBodies: [SKPhysicsBody] = []
-        for col in grid.enumerated() {
+        for col in tet.shape.enumerated() {
             for row in col.element.enumerated() {
                 if row.element {
                     // width and height are not 50 because SpriteKit adds about 2px of padding around all nodes and we need things to fit flush.
@@ -33,7 +39,7 @@ class WonkyTetronimo: SKShapeNode {
                     square.userData = NSMutableDictionary()
                     square.userData?.setValue(path.getPathElementsPoints().asClockwise().centroid, forKey: "center")
                     square.lineWidth = 1
-                    square.fillColor = color
+                    square.fillColor = tet.color
                     square.strokeColor = .clear
                     let physicsBody = SKPhysicsBody(polygonFrom: path)
 
@@ -43,12 +49,13 @@ class WonkyTetronimo: SKShapeNode {
             }
         }
         self.physicsBody = SKPhysicsBody(bodies: physicsBodies)
-        self.setup(color: color)
+        self.setup(color: tet.color)
     }
 
     /// creates a tetronimo from a collection of paths. Used to create a tetronimo that replaces a piece that's been chopped up by a removed line.
     /// the orignal center point of each path is also saved into the userData of the nodes
     init(with childrenPaths: [(path: Path, center: CGPoint)], color: UIColor = currentTheme.randomColor) {
+        self.color = color
         super.init()
         let children = childrenPaths.compactMap{(path) -> (SKPhysicsBody, SKShapeNode)? in
             guard let physicsBody = SKPhysicsBody(polygonFrom: path.path.asCgPath()) as SKPhysicsBody?  else {

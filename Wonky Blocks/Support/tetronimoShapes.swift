@@ -7,29 +7,48 @@
 //
 
 import Foundation
+import UIKit
 
-let tetronimoShapes = [
-    // I
-    [[true], [true], [true], [true]],
-    // S
-    [
-        [false, true, true],
-        [true, true, false],
-    ],
-    // Z
-    [
-        [true, true, false],
-        [false, true, true],
-    ],
-    // O
-    [
-        [true, true],
-        [true, true]
-    ],
-    // L
-    [
-        [true, false],
-        [true, false],
-        [true, true]
+typealias TetronimoType = (shape: [[Bool]], color: UIColor)
+
+extension WonkyTetronimo {
+    static let tetronimoTypes = [
+        // I
+        (
+            shape: [[true], [true], [true], [true]],
+            color: currentTheme.colorPalette[0]
+        ),
+        // S
+        (
+            shape: [
+                [false, true, true],
+                [true, true, false],
+            ],
+            color: currentTheme.colorPalette[1]
+        ),
+        // Z
+        (
+            shape: [
+                [true, true, false],
+                [false, true, true],
+            ],
+            color: currentTheme.colorPalette[2]
+        ),
+        // O
+        (
+            shape: [
+                [true, true],
+                [true, true]
+            ], color: currentTheme.colorPalette[3]
+        ),
+        // L
+        (
+            shape: [
+                [true, false],
+                [true, false],
+                [true, true]
+            ],
+            color: currentTheme.colorPalette[4]
+        )
     ]
-]
+}

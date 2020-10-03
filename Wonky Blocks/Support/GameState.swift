@@ -25,8 +25,8 @@ class WonkyGameState: ObservableObject {
     @Published var gameOver = false
     @Published var newHighScore = false
 
-    @Published var activeTet: WonkyTetronimo = WonkyTetronimo(grid: tetronimoShapes.randomElement()!)
-    @Published var nextTet: WonkyTetronimo = WonkyTetronimo(grid: tetronimoShapes.randomElement()!)
+    @Published var activeTet: WonkyTetronimo = WonkyTetronimo.randomTetronimo()
+    @Published var nextTet: WonkyTetronimo = WonkyTetronimo.randomTetronimo()
     
 
     func linesCleared(_ lineCount: Int) {
@@ -60,7 +60,7 @@ class WonkyGameState: ObservableObject {
         nextTet.removeFromParent()
         activeTet = nextTet
         activeTet.makeActive()
-        nextTet = WonkyTetronimo(grid: tetronimoShapes.randomElement()!)
+        nextTet = WonkyTetronimo.randomTetronimo()
     }
     
     func endGame() {
@@ -79,6 +79,6 @@ class WonkyGameState: ObservableObject {
         gameOver = false
         newHighScore = false
         activeTet = nextTet
-        nextTet = WonkyTetronimo(grid: tetronimoShapes.randomElement()!)
+        nextTet = WonkyTetronimo.randomTetronimo()
     }
 }
