@@ -9,7 +9,7 @@
 import UIKit
 
 // TODO: add menu to change color theme
-var currentTheme: ColorTheme = .rainbow
+var currentTheme: ColorTheme = .pastel
 
 enum ColorTheme {
     case rainbow, pastel, goodOldBlue

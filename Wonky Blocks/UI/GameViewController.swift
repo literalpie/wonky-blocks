@@ -96,9 +96,19 @@ class WonkyGameViewController: UIViewController {
                 // TODO: this only handles the first row/set of rows. We will need to remove all rows
                 // The tricky thing is that we will need to be careful to remove additional rows based on the _newNodes_,
                 // not the existing oldNodes which may not exist in the same shape anymore.
-                let (newNodes, oldNodes) = self.remove(intersectingNodes: breakageCandidates, fromRow: removingRowShapes.first!)
-                oldNodes.forEach { $0.removeFromParent() }
-                newNodes.forEach { self.spriteKitView.scene?.addChild($0) }
+                removingRowShapes.forEach { (rowToRemove) in
+                  let (newNodes, oldNodes) = self.remove(intersectingNodes: breakageCandidates, fromRow: rowToRemove)
+                  oldNodes.forEach { nodeToRemove in
+                    nodeToRemove.removeFromParent()
+                    breakageCandidates.removeAll { (removeConsideration) -> Bool in
+                      return removeConsideration == nodeToRemove
+                    }
+                  }
+                  newNodes.forEach { nodeToAdd in
+                    self.spriteKitView.scene?.addChild(nodeToAdd)
+                  }
+                  breakageCandidates.append(contentsOf: newNodes)
+                }
                 activeTet.physicsBody?.velocity = .zero
             }
             self.gameState.linesCleared(removingRows.count)
@@ -218,7 +228,6 @@ class WonkyGameViewController: UIViewController {
                 return existingPath.element.first { existingPathPiece in
                     
                     let distance = path.center.distance(to: existingPathPiece.center)
-                    print(distance)
                     return distance < 60
                 } != nil
             }
