@@ -8,9 +8,8 @@
 
 import Foundation
 
-let tetCategory:UInt32 = 1<<1
-let groundCategory:UInt32 = 1<<2
-let activeTetCategory:UInt32 = 1<<3
-let rowCategory:UInt32 = 1<<4
-let wallCategory:UInt32 = 1<<5
-
+let tetCategory: UInt32 = 1 << 1
+let groundCategory: UInt32 = 1 << 2
+let activeTetCategory: UInt32 = 1 << 3
+let rowCategory: UInt32 = 1 << 4
+let wallCategory: UInt32 = 1 << 5

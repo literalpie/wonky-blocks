@@ -12,35 +12,35 @@ import UIKit
 var currentTheme: ColorTheme = .pastel
 
 enum ColorTheme {
-    case rainbow, pastel, goodOldBlue
-    
-    var randomColor: UIColor {
-        return self.colorPalette.randomElement()!
+  case rainbow, pastel, goodOldBlue
+
+  var randomColor: UIColor {
+    return self.colorPalette.randomElement()!
+  }
+
+  var colorPalette: [UIColor] {
+    switch self {
+    case .rainbow:
+      return [
+        .red,
+        .orange,
+        .yellow,
+        .green,
+        .blue,
+        .cyan,
+        .purple,
+      ]
+    case .pastel:
+      return [
+        UIColor(hex: 0xffd5e5),
+        UIColor(hex: 0xffffdd),
+        UIColor(hex: 0xa0ffe6),
+        UIColor(hex: 0x81f5ff),
+        UIColor(hex: 0xc295d8),
+        UIColor(hex: 0xffd3b6),
+      ]
+    case .goodOldBlue:
+      return [.blue]
     }
-    
-    var colorPalette: [UIColor] {
-        switch self {
-        case .rainbow:
-            return [
-              .red,
-              .orange,
-              .yellow,
-              .green,
-              .blue,
-              .cyan,
-              .purple,
-            ]
-        case .pastel:
-            return [
-              UIColor(hex: 0xffd5e5),
-              UIColor(hex: 0xffffdd),
-              UIColor(hex: 0xa0ffe6),
-              UIColor(hex: 0x81f5ff),
-              UIColor(hex: 0xc295d8),
-              UIColor(hex: 0xffd3b6),
-            ]
-        case .goodOldBlue:
-            return [.blue]
-        }
-    }
+  }
 }
