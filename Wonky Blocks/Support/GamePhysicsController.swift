@@ -14,9 +14,7 @@ import SpriteKit
 class GamePhysicsController: NSObject, SKPhysicsContactDelegate {
   var can: Cancellable?
   var leftPressed = false
-  var leftTouchPressed = false
   var rightPressed = false
-  var rightTouchPressed = false
   var upPressed = false
   var downPressed = false
   var rotateLeftPressed = false

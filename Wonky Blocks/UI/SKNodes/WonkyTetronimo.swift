@@ -19,6 +19,7 @@ class WonkyTetronimo: SKShapeNode {
     return center
   }
   var color: UIColor
+  var minimumVelocity: CGFloat = 100
 
   static func randomTetronimo() -> WonkyTetronimo {
     return self.init(WonkyTetronimo.tetronimoTypes.randomElement()!)
@@ -102,10 +103,11 @@ class WonkyTetronimo: SKShapeNode {
   }
 
   /// The active piece is the one controlled by the user. It needs to not be affected by gravity, have a downward velocity and other things.
-  func makeActive() {
+  func makeActive(with velocity: CGFloat = 100) {
+    minimumVelocity = velocity
     physicsBody?.isDynamic = true
     physicsBody?.affectedByGravity = false
-    physicsBody?.velocity = .init(dx: 0, dy: -100)
+    physicsBody?.velocity = .init(dx: 0, dy: -velocity)
     // higher density so the active piece can push other pieces around.
     physicsBody?.density = 3
     physicsBody?.categoryBitMask = activeTetCategory

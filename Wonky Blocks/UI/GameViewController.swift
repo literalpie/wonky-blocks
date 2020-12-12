@@ -23,6 +23,10 @@ class WonkyGameViewController: UIViewController {
   var allCans: [Cancellable] = []
 
   var rows: [WonkyRow] = []
+  
+  var minimumSpeed: CGFloat {
+    return [CGFloat(100 + self.gameState.level * 20), CGFloat(340)].min()!
+  }
 
   deinit {
     physicsController.can?.cancel()
@@ -123,7 +127,7 @@ class WonkyGameViewController: UIViewController {
       newActive.position = CGPoint(x: 200, y: 800)
       newActive.removeFromParent()  // removes from preview scene
       self.spriteKitView.scene?.addChild(newActive)
-      newActive.makeActive()
+      newActive.makeActive(with: self.minimumSpeed)
       self.physicsController.activePiece = newActive
     }
     allCans.append(activeTetCan)

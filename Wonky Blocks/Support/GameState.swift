@@ -58,7 +58,6 @@ class WonkyGameState: ObservableObject {
     activeTet.makeInactive()
     nextTet.removeFromParent()
     activeTet = nextTet
-    activeTet.makeActive()
     nextTet = WonkyTetronimo.randomTetronimo()
   }
 

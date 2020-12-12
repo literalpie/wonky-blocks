@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0088A4002527453200A1035F /* ColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0088A3FF2527453200A1035F /* ColorTheme.swift */; };
 		0088A40425274A0D00A1035F /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0088A40325274A0D00A1035F /* UIColor+Hex.swift */; };
+		450255AD25852F50003BE6E6 /* WonkyTetronimo+movements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450255AC25852F50003BE6E6 /* WonkyTetronimo+movements.swift */; };
 		453EDD6224998982006470E7 /* Joystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453EDD6124998982006470E7 /* Joystick.swift */; };
 		453FBC7D249AE0310056E4D7 /* SwiftClipper in Frameworks */ = {isa = PBXBuildFile; productRef = 453FBC7C249AE0310056E4D7 /* SwiftClipper */; };
 		45525A69244C7FD4004974AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45525A68244C7FD4004974AB /* AppDelegate.swift */; };
@@ -39,6 +40,7 @@
 /* Begin PBXFileReference section */
 		0088A3FF2527453200A1035F /* ColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTheme.swift; sourceTree = "<group>"; };
 		0088A40325274A0D00A1035F /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
+		450255AC25852F50003BE6E6 /* WonkyTetronimo+movements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WonkyTetronimo+movements.swift"; sourceTree = "<group>"; };
 		45332F4C24ECA5D900F7A72C /* preview.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = preview.gif; sourceTree = "<group>"; };
 		453EDD6124998982006470E7 /* Joystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joystick.swift; sourceTree = "<group>"; };
 		45525A65244C7FD4004974AB /* Wonky Blocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wonky Blocks.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,6 +188,7 @@
 				45A248B8249659D90030EC50 /* WonkyRowIndicator.swift */,
 				45A248BA24965ACD0030EC50 /* WonkyRowIndicatorSpace.swift */,
 				45A248BE24965B200030EC50 /* WonkyTetronimo.swift */,
+				450255AC25852F50003BE6E6 /* WonkyTetronimo+movements.swift */,
 				45A248C024965B3C0030EC50 /* WonkyRow.swift */,
 			);
 			path = SKNodes;
@@ -279,6 +282,7 @@
 				45A248A4249657210030EC50 /* GamePhysicsController+keyboardControls.swift in Sources */,
 				45A248A8249657B90030EC50 /* GCPath+CGPoints.swift in Sources */,
 				45A248B7249659A90030EC50 /* WonkyGameBoard.swift in Sources */,
+				450255AD25852F50003BE6E6 /* WonkyTetronimo+movements.swift in Sources */,
 				45A248A6249657700030EC50 /* tetronimoShapes.swift in Sources */,
 				45A248AE2496588B0030EC50 /* PiecePreviewView.swift in Sources */,
 				45525A6B244C7FD4004974AB /* SceneDelegate.swift in Sources */,

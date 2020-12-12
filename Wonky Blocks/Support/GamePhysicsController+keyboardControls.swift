@@ -12,38 +12,28 @@ import UIKit
 
 extension GamePhysicsController {
   func handleKeyEvents() {
-    if activePiece?.physicsBody?.velocity.dy ?? -100 > -100 {
-      activePiece?.physicsBody?.velocity.dy = -100
+    if let activePiece = activePiece,
+       let physicsBody = activePiece.physicsBody,
+       physicsBody.velocity.dy > -activePiece.minimumVelocity {
+      physicsBody.velocity.dy = -activePiece.minimumVelocity
     }
     if leftPressed, !rightPressed {
-      let xVelocity = activePiece?.physicsBody?.velocity.dx
-      activePiece?.physicsBody?.velocity.dx = [xVelocity! - 50, CGFloat(-250)].max()!
+      activePiece?.moveLeft()
     }
     if rightPressed, !leftPressed {
-      let xVelocity = activePiece?.physicsBody?.velocity.dx
-      activePiece?.physicsBody?.velocity.dx = [xVelocity! + 50, CGFloat(250)].min()!
+      activePiece?.moveRight()
     }
     if downPressed, !upPressed {
-      let yVelocity = activePiece?.physicsBody?.velocity.dy
-      activePiece?.physicsBody?.velocity.dy = [yVelocity! - 40, CGFloat(-500)].max()!
+      activePiece?.moveDown()
     }
     if upPressed, !downPressed {
-      let yVelocity = activePiece?.physicsBody?.velocity.dy
-      activePiece?.physicsBody?.velocity.dy = [yVelocity! + 40, CGFloat(-100)].min()!
-    }
-    if rightTouchPressed, !leftTouchPressed {
-      activePiece?.physicsBody?.angularVelocity = -2.8
-    }
-    if leftTouchPressed, !rightTouchPressed {
-      activePiece?.physicsBody?.angularVelocity = 2.8
+      activePiece?.moveUp()
     }
     if rotateLeftPressed, !rotateRightPressed {
-      let rVelocity = activePiece?.physicsBody?.angularVelocity
-      activePiece?.physicsBody?.angularVelocity = [rVelocity! + 0.7, CGFloat(2.8)].min()!
+      activePiece?.rotateLeft()
     }
     if rotateRightPressed, !rotateLeftPressed {
-      let rVelocity = activePiece?.physicsBody?.angularVelocity
-      activePiece?.physicsBody?.angularVelocity = [rVelocity! - 0.7, CGFloat(-2.8)].max()!
+      activePiece?.rotateRight()
     }
   }
 
