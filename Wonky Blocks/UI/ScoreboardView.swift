@@ -12,7 +12,7 @@ import SwiftUI
 struct ScoreBoardView: View {
   @EnvironmentObject var gameState: WonkyGameState
   var highScore: Int {
-    gameState.userDefaults.highScore
+    gameState.highScore
   }
 
   var body: some View {
@@ -22,6 +22,11 @@ struct ScoreBoardView: View {
       Text("Lines Cleared: \(gameState.lineCount)")
       Text("Level: \(gameState.level)")
       Text("High Score: \(highScore)")
+      if gameState.gameStarted && !gameState.gameOver {
+        Button("Main Menu") {
+          gameState.gameStarted = false
+        }        
+      }
     }
   }
 }

@@ -18,7 +18,7 @@ struct RootView: View {
     GeometryReader { (size: GeometryProxy) in
       ZStack {
         VStack {
-          if size.size.width <= size.size.height || gameState.gameOver {
+          if gameState.gameStarted && (size.size.width <= size.size.height || gameState.gameOver) {
             HStack {
               ScoreBoardView()
               if !gameState.gameOver {
@@ -28,39 +28,38 @@ struct RootView: View {
             }
           }
           HStack {
-            if gameState.gameOver {
-              VStack {
-                Text("Game Over").font(.title)
-                if gameState.newHighScore {
-                  Text("New High Score: \(gameState.score)")
-                }
-                Button("Restart Game", action: self.gameState.reset)
-              }
+            if !gameState.gameStarted {
+              MainMenuView()
+            } else if gameState.gameOver {
+              GameOverView()
             } else {
               GameView(joyState: self.$joyState, rotateState: self.$rotateState)
             }
-            if size.size.width > size.size.height && !gameState.gameOver {
+            if size.size.width > size.size.height, gameState.gameStarted, !gameState.gameOver {
               VStack {
                 ScoreBoardView()
                 PiecePreviewView(piece: self.gameState.nextTet)
                   .frame(maxWidth: 150, maxHeight: 150)
-
               }
             }
           }
         }
         // we don't want this to get in the way of button presses
-        if !gameState.gameOver {
-          HStack(spacing: 0) {
-            Joystick(state: self.$joyState, radius: 50)
-            Joystick(state: self.$rotateState, radius: 50)
+        if gameState.gameStarted, !gameState.gameOver {
+          VStack {
+            Spacer(minLength: size.size.height / 2)// cause joysticks to only be on bottom half so buttons can be pressed
+            HStack(spacing: 0) {
+              Joystick(state: self.$joyState, radius: 50)
+              Joystick(state: self.$rotateState, radius: 50)
+            }
           }
         }
       }
-      .background(Color(UIColor.systemBackground))
+      .frame(width: size.size.width, height: size.size.height, alignment: .center)
     }
   }
 }
+
 
 struct RootView_Previews: PreviewProvider {
   static var previews: some View {

@@ -17,6 +17,8 @@
 		45525A6F244C7FD9004974AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45525A6E244C7FD9004974AB /* Assets.xcassets */; };
 		45525A72244C7FD9004974AB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45525A71244C7FD9004974AB /* Preview Assets.xcassets */; };
 		45525A75244C7FD9004974AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45525A73244C7FD9004974AB /* LaunchScreen.storyboard */; };
+		455C620F2586623300CED915 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455C620E2586623300CED915 /* GameOverView.swift */; };
+		455C62122586624F00CED915 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455C62112586624F00CED915 /* MainMenuView.swift */; };
 		45A248A2249656E10030EC50 /* GamePhysicsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A248A1249656E10030EC50 /* GamePhysicsController.swift */; };
 		45A248A4249657210030EC50 /* GamePhysicsController+keyboardControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A248A3249657210030EC50 /* GamePhysicsController+keyboardControls.swift */; };
 		45A248A6249657700030EC50 /* tetronimoShapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A248A5249657700030EC50 /* tetronimoShapes.swift */; };
@@ -50,6 +52,8 @@
 		45525A71244C7FD9004974AB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		45525A74244C7FD9004974AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		45525A76244C7FD9004974AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		455C620E2586623300CED915 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
+		455C62112586624F00CED915 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		456A80E4244D013F00E5E119 /* Wonky Blocks.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Wonky Blocks.entitlements"; sourceTree = "<group>"; };
 		459133A42496CAE6006BAC3D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		45A248A1249656E10030EC50 /* GamePhysicsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePhysicsController.swift; sourceTree = "<group>"; };
@@ -172,6 +176,8 @@
 			children = (
 				45A248B5249659990030EC50 /* SKNodes */,
 				45A248AB2496586C0030EC50 /* RootView.swift */,
+				455C62112586624F00CED915 /* MainMenuView.swift */,
+				455C620E2586623300CED915 /* GameOverView.swift */,
 				45A248AD2496588B0030EC50 /* PiecePreviewView.swift */,
 				45A248AF249658B60030EC50 /* ScoreBoardView.swift */,
 				45A248B1249658D80030EC50 /* GameView.swift */,
@@ -291,7 +297,9 @@
 				45A248BF24965B200030EC50 /* WonkyTetronimo.swift in Sources */,
 				45A248B4249659180030EC50 /* GameState.swift in Sources */,
 				45A248B0249658B60030EC50 /* ScoreBoardView.swift in Sources */,
+				455C620F2586623300CED915 /* GameOverView.swift in Sources */,
 				45A248B9249659D90030EC50 /* WonkyRowIndicator.swift in Sources */,
+				455C62122586624F00CED915 /* MainMenuView.swift in Sources */,
 				0088A4002527453200A1035F /* ColorTheme.swift in Sources */,
 				45A248BD24965AF30030EC50 /* GameViewController.swift in Sources */,
 				45A248C524965BB40030EC50 /* physicsCategories.swift in Sources */,

@@ -18,15 +18,23 @@ class UserDefaultsObject: ObservableObject {
 }
 
 class WonkyGameState: ObservableObject {
-  var userDefaults: UserDefaultsObject = UserDefaultsObject()
+  private var userDefaults: UserDefaultsObject = UserDefaultsObject()
   @Published var score = 0
   @Published var lineCount = 0
   @Published var level = 1
+  // Main menu will show when gameStarted is false
+  @Published var gameStarted = false
+  // Whether the game-over screen should show
   @Published var gameOver = false
   @Published var newHighScore = false
+  @Published var highScore = 0
 
   @Published var activeTet: WonkyTetronimo = WonkyTetronimo.randomTetronimo()
   @Published var nextTet: WonkyTetronimo = WonkyTetronimo.randomTetronimo()
+  
+  init() {
+    self.highScore = userDefaults.highScore
+  }
 
   func linesCleared(_ lineCount: Int) {
     self.lineCount += lineCount
@@ -66,11 +74,12 @@ class WonkyGameState: ObservableObject {
     if score > highScore {
       newHighScore = true
       userDefaults.setHighScore(to: score)
+      self.highScore = score
     }
     gameOver = true
   }
 
-  func reset() {
+  func resetGame() {
     score = 0
     lineCount = 0
     level = 1
@@ -78,5 +87,10 @@ class WonkyGameState: ObservableObject {
     newHighScore = false
     activeTet = nextTet
     nextTet = WonkyTetronimo.randomTetronimo()
+  }
+  
+  func resetHighScore() {
+    userDefaults.setHighScore(to: 0)
+    self.highScore = 0
   }
 }
