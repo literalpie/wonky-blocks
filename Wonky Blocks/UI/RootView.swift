@@ -19,18 +19,16 @@ struct RootView: View {
     GeometryReader { (size: GeometryProxy) in
       ZStack {
         VStack(spacing: 0) {
-          if gameState.gameStarted && (size.size.width <= size.size.height || gameState.gameOver) {
+          if gameState.gameStarted && size.size.width <= size.size.height && !gameState.gameOver {
             HStack {
-              if gameState.gameStarted && !gameState.gameOver && showInstructions {
+              if gameState.gameStarted && showInstructions {
                 InstructionsView(layoutDirection: .horizontal)
               }
               Spacer()
               ScoreBoardView()
-              if !gameState.gameOver {
-                PiecePreviewView(piece: self.gameState.nextTet)
-                  .frame(maxWidth: 150, maxHeight: 150)
-                  .padding(10)
-              }
+              PiecePreviewView(piece: self.gameState.nextTet)
+                .frame(maxWidth: 150, maxHeight: 150)
+                .padding(10)
             }
           }
           HStack(spacing: 0) {
@@ -57,7 +55,6 @@ struct RootView: View {
               }
             }
           }
-
         }
         // we don't want this to get in the way of button presses
         if gameState.gameStarted, !gameState.gameOver {

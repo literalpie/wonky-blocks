@@ -102,8 +102,8 @@ public struct DefaultJoystickStyle: JoystickStyle {
 
   public func makeHitBox(configuration: JoystickConfiguration) -> some View {
     Rectangle()
-      // bkindle: use black so it doesn't show up
-      .fill(Color.black.opacity(0.05))
+      // bkindle: make it transparent
+      .fill(Color.black.opacity(0.001))
   }
   public func makeLockBox(configuration: JoystickConfiguration) -> some View {
     ZStack {

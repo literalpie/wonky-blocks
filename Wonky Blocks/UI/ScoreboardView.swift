@@ -16,19 +16,26 @@ struct ScoreBoardView: View {
   }
 
   var body: some View {
-    VStack(alignment: .leading) {
-      Text("Score: \(gameState.score)")
-        .foregroundColor(gameState.score > highScore ? Color.green : Color.primary)
-      Text("Lines Cleared: \(gameState.lineCount)")
-      Text("Level: \(gameState.level)")
-      Text("High Score: \(highScore)")
+    VStack(alignment: .center) {
+      VStack(alignment: .leading) {
+        Text("Score: \(gameState.score)")
+          .foregroundColor(gameState.score > highScore ? Color.green : Color.primary)
+        Text("Lines Cleared: \(gameState.lineCount)")
+        Text("Level: \(gameState.level)")
+        Text("High Score: \(highScore)")
+      }
       if gameState.gameStarted && !gameState.gameOver {
-        Button("Main Menu") {
-          gameState.gameStarted = false
-        }
-        Button(gameState.paused ? "Resume" : "Pause") {
-          gameState.paused.toggle()
-        }
+          VStack(alignment: .center) {
+            Button("Main Menu") {
+              gameState.gameStarted = false
+            }
+            .wonkyButton()
+            
+            Button(gameState.paused ? "Resume" : "Pause") {
+              gameState.paused.toggle()
+            }
+            .wonkyButton()
+          }
       }
     }
   }
