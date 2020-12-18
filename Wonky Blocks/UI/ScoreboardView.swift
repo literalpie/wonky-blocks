@@ -25,7 +25,7 @@ struct ScoreBoardView: View {
       if gameState.gameStarted && !gameState.gameOver {
         Button("Main Menu") {
           gameState.gameStarted = false
-        }        
+        }
       }
     }
   }

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct MainMenuView: View {
   @EnvironmentObject var gameState: WonkyGameState
-  
+
   var body: some View {
     VStack {
       Text("Wonky Blocks!")
@@ -27,7 +27,7 @@ struct MainMenuView: View {
 }
 
 struct MainMenuView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainMenuView()
-    }
+  static var previews: some View {
+    MainMenuView()
+  }
 }

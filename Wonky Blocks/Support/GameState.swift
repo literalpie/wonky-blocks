@@ -31,7 +31,7 @@ class WonkyGameState: ObservableObject {
 
   @Published var activeTet: WonkyTetronimo = WonkyTetronimo.randomTetronimo()
   @Published var nextTet: WonkyTetronimo = WonkyTetronimo.randomTetronimo()
-  
+
   init() {
     self.highScore = userDefaults.highScore
   }
@@ -88,7 +88,7 @@ class WonkyGameState: ObservableObject {
     activeTet = nextTet
     nextTet = WonkyTetronimo.randomTetronimo()
   }
-  
+
   func resetHighScore() {
     userDefaults.setHighScore(to: 0)
     self.highScore = 0

@@ -13,8 +13,9 @@ import UIKit
 extension GamePhysicsController {
   func handleKeyEvents() {
     if let activePiece = activePiece,
-       let physicsBody = activePiece.physicsBody,
-       physicsBody.velocity.dy > -activePiece.minimumVelocity {
+      let physicsBody = activePiece.physicsBody,
+      physicsBody.velocity.dy > -activePiece.minimumVelocity
+    {
       physicsBody.velocity.dy = -activePiece.minimumVelocity
     }
     if leftPressed, !rightPressed {

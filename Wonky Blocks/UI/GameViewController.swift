@@ -23,7 +23,7 @@ class WonkyGameViewController: UIViewController {
   var allCans: [Cancellable] = []
 
   var rows: [WonkyRow] = []
-  
+
   var minimumSpeed: CGFloat {
     return [CGFloat(100 + self.gameState.level * 20), CGFloat(340)].min()!
   }

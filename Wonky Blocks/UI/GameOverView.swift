@@ -10,7 +10,7 @@ import SwiftUI
 
 struct GameOverView: View {
   @EnvironmentObject var gameState: WonkyGameState
-  
+
   var body: some View {
     VStack {
       Text("Game Over").font(.title)
@@ -26,9 +26,8 @@ struct GameOverView: View {
   }
 }
 
-
 struct GameOverView_Previews: PreviewProvider {
-    static var previews: some View {
-        GameOverView()
-    }
+  static var previews: some View {
+    GameOverView()
+  }
 }
