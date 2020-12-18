@@ -26,6 +26,9 @@ struct ScoreBoardView: View {
         Button("Main Menu") {
           gameState.gameStarted = false
         }
+        Button(gameState.paused ? "Resume" : "Pause") {
+          gameState.paused.toggle()
+        }
       }
     }
   }

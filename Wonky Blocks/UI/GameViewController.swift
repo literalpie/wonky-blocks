@@ -135,7 +135,7 @@ class WonkyGameViewController: UIViewController {
 
   override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
     if (presses.contains { $0.key?.keyCode == .keyboardReturnOrEnter }) {
-      self.spriteKitView.scene?.isPaused.toggle()
+      self.gameState.paused.toggle()
     }
 
     self.physicsController.pressesBegan(presses, with: event)

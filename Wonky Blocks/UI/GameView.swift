@@ -31,6 +31,7 @@ struct GameView: UIViewControllerRepresentable {
       uiViewController.physicsController.rotateLeftPressed = rotateState.translation.width < -20
       uiViewController.physicsController.rotateRightPressed = rotateState.translation.width > 20
     }
+    uiViewController.spriteKitView.isPaused = gameState.paused
   }
 
   static func dismantleUIViewController(

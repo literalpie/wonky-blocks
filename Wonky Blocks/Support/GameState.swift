@@ -28,6 +28,7 @@ class WonkyGameState: ObservableObject {
   @Published var gameOver = false
   @Published var newHighScore = false
   @Published var highScore = 0
+  @Published var paused = false
 
   @Published var activeTet: WonkyTetronimo = WonkyTetronimo.randomTetronimo()
   @Published var nextTet: WonkyTetronimo = WonkyTetronimo.randomTetronimo()
