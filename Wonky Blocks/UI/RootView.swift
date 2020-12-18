@@ -13,21 +13,27 @@ struct RootView: View {
   @EnvironmentObject var gameState: WonkyGameState
   @State var joyState: JoyState = .inactive
   @State var rotateState: JoyState = .inactive
+  @State var showInstructions = true
 
   var body: some View {
     GeometryReader { (size: GeometryProxy) in
       ZStack {
-        VStack {
+        VStack(spacing: 0) {
           if gameState.gameStarted && (size.size.width <= size.size.height || gameState.gameOver) {
             HStack {
+              if gameState.gameStarted && !gameState.gameOver && showInstructions {
+                InstructionsView(layoutDirection: .horizontal)
+              }
+              Spacer()
               ScoreBoardView()
               if !gameState.gameOver {
                 PiecePreviewView(piece: self.gameState.nextTet)
                   .frame(maxWidth: 150, maxHeight: 150)
+                  .padding(10)
               }
             }
           }
-          HStack {
+          HStack(spacing: 0) {
             if !gameState.gameStarted {
               MainMenuView()
             } else if gameState.gameOver {
@@ -37,17 +43,26 @@ struct RootView: View {
             }
             if size.size.width > size.size.height, gameState.gameStarted, !gameState.gameOver {
               VStack {
+                Spacer()
                 ScoreBoardView()
                 PiecePreviewView(piece: self.gameState.nextTet)
-                  .frame(maxWidth: 150, maxHeight: 150)
+                  .frame(width: 150, height: 150)
+                  .padding(10)
+                Spacer()
+                Group {
+                  if showInstructions {
+                    InstructionsView(layoutDirection: .vertical)
+                  }
+                }
               }
             }
           }
+
         }
         // we don't want this to get in the way of button presses
         if gameState.gameStarted, !gameState.gameOver {
           VStack {
-            Spacer(minLength: size.size.height / 2)// cause joysticks to only be on bottom half so buttons can be pressed
+            Spacer(minLength: size.size.height / 2)  // cause joysticks to only be on bottom half so buttons can be pressed
             HStack(spacing: 0) {
               Joystick(state: self.$joyState, radius: 50)
               Joystick(state: self.$rotateState, radius: 50)
@@ -55,11 +70,17 @@ struct RootView: View {
           }
         }
       }
+      .onAppear {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+          withAnimation(.easeInOut(duration: 1.5)) {
+            showInstructions.toggle()
+          }
+        }
+      }
       .frame(width: size.size.width, height: size.size.height, alignment: .center)
     }
   }
 }
-
 
 struct RootView_Previews: PreviewProvider {
   static var previews: some View {

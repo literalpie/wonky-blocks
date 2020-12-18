@@ -23,6 +23,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         rootView: RootView()
           .environmentObject(WonkyGameState())
       )
+      windowScene.sizeRestrictions?.minimumSize = CGSize(width: 700, height: 700)
+
       self.window = window
       window.makeKeyAndVisible()
     }

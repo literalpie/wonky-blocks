@@ -10,6 +10,7 @@
 		0088A4002527453200A1035F /* ColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0088A3FF2527453200A1035F /* ColorTheme.swift */; };
 		0088A40425274A0D00A1035F /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0088A40325274A0D00A1035F /* UIColor+Hex.swift */; };
 		450255AD25852F50003BE6E6 /* WonkyTetronimo+movements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450255AC25852F50003BE6E6 /* WonkyTetronimo+movements.swift */; };
+		453A3E93258A4DAD001D6C87 /* InstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453A3E92258A4DAD001D6C87 /* InstructionsView.swift */; };
 		453EDD6224998982006470E7 /* Joystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 453EDD6124998982006470E7 /* Joystick.swift */; };
 		453FBC7D249AE0310056E4D7 /* SwiftClipper in Frameworks */ = {isa = PBXBuildFile; productRef = 453FBC7C249AE0310056E4D7 /* SwiftClipper */; };
 		45525A69244C7FD4004974AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45525A68244C7FD4004974AB /* AppDelegate.swift */; };
@@ -44,6 +45,7 @@
 		0088A40325274A0D00A1035F /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		450255AC25852F50003BE6E6 /* WonkyTetronimo+movements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WonkyTetronimo+movements.swift"; sourceTree = "<group>"; };
 		45332F4C24ECA5D900F7A72C /* preview.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = preview.gif; sourceTree = "<group>"; };
+		453A3E92258A4DAD001D6C87 /* InstructionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsView.swift; sourceTree = "<group>"; };
 		453EDD6124998982006470E7 /* Joystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joystick.swift; sourceTree = "<group>"; };
 		45525A65244C7FD4004974AB /* Wonky Blocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Wonky Blocks.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		45525A68244C7FD4004974AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				45A248B1249658D80030EC50 /* GameView.swift */,
 				45A248BC24965AF30030EC50 /* GameViewController.swift */,
 				453EDD6124998982006470E7 /* Joystick.swift */,
+				453A3E92258A4DAD001D6C87 /* InstructionsView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				45A248C124965B3C0030EC50 /* WonkyRow.swift in Sources */,
 				45A248AC2496586C0030EC50 /* RootView.swift in Sources */,
 				45A248B2249658D80030EC50 /* GameView.swift in Sources */,
+				453A3E93258A4DAD001D6C87 /* InstructionsView.swift in Sources */,
 				45A248BB24965ACD0030EC50 /* WonkyRowIndicatorSpace.swift in Sources */,
 				45A248A4249657210030EC50 /* GamePhysicsController+keyboardControls.swift in Sources */,
 				45A248A8249657B90030EC50 /* GCPath+CGPoints.swift in Sources */,
