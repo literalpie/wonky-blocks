@@ -12,6 +12,8 @@ import SwiftClipper
 import UIKit
 
 class WonkyGameViewController: UIViewController {
+  static let rowFilledThreshold: CGFloat = 17000
+
   var spriteKitView: SKView {
     return self.view as! SKView
   }
@@ -35,15 +37,16 @@ class WonkyGameViewController: UIViewController {
 
   override func viewDidLoad() {
     let view = SKView()
-    let scene = SKScene(size: CGSize(width: 550, height: 800))
+    let sceneWidth = WonkyGameBoard.width + Int(WonkyRowIndicator.indicatorWidth)
+    let scene = SKScene(size: CGSize(width: sceneWidth, height: WonkyGameBoard.height))
     scene.scaleMode = .aspectFit
 
     self.rows = Array(0...15).map { (offset) in
       WonkyRow(rowNumber: offset)
     }
-    rows.forEach { $0.position = CGPoint(x: 50, y: 0) }
+    rows.forEach { $0.position = CGPoint(x: WonkyRowIndicator.indicatorWidth, y: 0) }
     let gameBoard = WonkyGameBoard()
-    gameBoard.position = CGPoint(x: 50, y: 0)
+    gameBoard.position = CGPoint(x: WonkyRowIndicator.indicatorWidth, y: 0)
     scene.addChild(gameBoard)
     scene.addChild(rowIndicatorSpace)
     view.presentScene(scene)
@@ -56,7 +59,7 @@ class WonkyGameViewController: UIViewController {
     let timerCan = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect().sink { (_) in
       DispatchQueue.global(qos: .background).async {
         // gets the percentage that each row is filled compared to the target required to clear a row
-        let rowStates = self.rows.map { $0.calculateRowArea() / 1450 }
+        let rowStates = self.rows.map { $0.calculateRowArea() / Self.rowFilledThreshold }
         DispatchQueue.main.async {
           self.rowIndicatorSpace.updateAllRowIndicators(rowStates: rowStates)
         }
@@ -84,8 +87,8 @@ class WonkyGameViewController: UIViewController {
       var rowStates: [CGFloat] = []
       self.rows.enumerated().forEach { row in
         let area = row.element.calculateRowArea()
-        rowStates.append(area / 1450)
-        if area > 14500 {
+        rowStates.append(area / Self.rowFilledThreshold)
+        if area > Self.rowFilledThreshold {
           let newCandidates = row.element.physicsBody!.allContactedBodies().compactMap { $0.node }
           breakageCandidates.append(contentsOf: newCandidates)
           removingRows.append(row.offset)
@@ -124,7 +127,8 @@ class WonkyGameViewController: UIViewController {
     }
     allCans.append(contactCan)
     let activeTetCan = self.gameState.$activeTet.sink { (newActive) in
-      newActive.position = CGPoint(x: 200, y: 800)
+      let newPieceXPosition = (CGFloat(WonkyGameBoard.width) / 2) + WonkyRowIndicator.indicatorWidth - newActive.center.x
+      newActive.position = CGPoint(x: newPieceXPosition, y: CGFloat(WonkyGameBoard.height))
       newActive.removeFromParent()  // removes from preview scene
       self.spriteKitView.scene?.addChild(newActive)
       newActive.makeActive(with: self.minimumSpeed)
@@ -244,6 +248,8 @@ class WonkyGameViewController: UIViewController {
         return existingPath.element.first { existingPathPiece in
 
           let distance = path.center.distance(to: existingPathPiece.center)
+          // in all my testing, the distance between the center of 2
+          // connected blocks is always within 60
           return distance < 60
         } != nil
       }

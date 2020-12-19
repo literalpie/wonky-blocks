@@ -10,6 +10,9 @@ import SpriteKit
 
 /// The bars on the left side of the board that indicate how full the row is.
 class WonkyRowIndicator: SKShapeNode {
+  static let indicatorWidth = CGFloat(WonkyRow.rowHeight) // square, based on the row height
+  static let indicatorHeight = CGFloat(WonkyRow.rowHeight)
+
   override init() {
     super.init()
     self.fillColor = .darkGray
@@ -21,10 +24,10 @@ class WonkyRowIndicator: SKShapeNode {
 
   func updateRowStatus(fillPercentage: CGFloat) {
     self.path = CGPath(
-      rect: CGRect(x: 0, y: 0, width: 50 * (fillPercentage / 10), height: 50),
+      rect: CGRect(x: 0, y: 0, width: Self.indicatorWidth * fillPercentage, height: Self.indicatorHeight),
       transform: nil
     )
-    if fillPercentage / 10 > 1 {
+    if fillPercentage > 1 {
       self.fillColor = .black
     } else {
       self.fillColor = .darkGray

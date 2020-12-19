@@ -16,7 +16,7 @@ class WonkyRowIndicatorSpace: SKNode {
 
     for row in 0...14 {
       let rowIndicator = WonkyRowIndicator()
-      rowIndicator.position.y = CGFloat(50 * row)
+      rowIndicator.position.y = CGFloat(WonkyRow.rowHeight * row)
       indicators.append(rowIndicator)
       self.addChild(rowIndicator)
     }

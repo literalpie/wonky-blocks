@@ -10,15 +10,15 @@ import SpriteKit
 
 /// A row of the board. The area that must be filled to remove a line, and the area where the line will be removed
 class WonkyRow: SKShapeNode {
-  static let rowWidth = 500
+  static let rowWidth = 550
   static let rowHeight = 50
 
   init(rowNumber: Int = 0) {
     super.init()
     let rowSize = CGSize(width: Self.rowWidth, height: Self.rowHeight)
-    let rowCenter = CGPoint(x: rowSize.width / 2, y: rowSize.height / 2 + (50 * CGFloat(rowNumber)))
+    let rowCenter = CGPoint(x: rowSize.width / 2, y: rowSize.height / 2 + (CGFloat(Self.rowHeight * rowNumber)))
     self.path = CGPath(
-      rect: CGRect(x: 0, y: 50 * rowNumber, width: Self.rowWidth, height: Self.rowHeight),
+      rect: CGRect(x: 0, y: Self.rowHeight * rowNumber, width: Self.rowWidth, height: Self.rowHeight),
       transform: nil)
     physicsBody = SKPhysicsBody(
       rectangleOf: rowSize, center: CGPoint(x: rowCenter.x, y: rowCenter.y))

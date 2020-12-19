@@ -10,12 +10,14 @@ import SpriteKit
 import SwiftClipper
 
 class WonkyTetronimo: SKShapeNode {
+  static let blockSize = 50
   var center: CGPoint {
+    let halfBlockSize = CGFloat(Self.blockSize / 2)
     let originX = children.map { (($0 as? SKShapeNode)?.path?.boundingBox.origin.x)! }
     let originY = children.map { (($0 as? SKShapeNode)?.path?.boundingBox.origin.y)! }
     let midX = (originX.max()! + originX.min()!) / 2
     let midY = (originY.max()! + originY.min()!) / 2
-    let center = CGPoint(x: midX + 25, y: midY + 25)
+    let center = CGPoint(x: midX + halfBlockSize, y: midY + halfBlockSize)
     return center
   }
   var color: UIColor
@@ -36,7 +38,12 @@ class WonkyTetronimo: SKShapeNode {
           // width and height are not 50 because SpriteKit adds about 2px of padding around all nodes and we need things to fit flush.
           // unfortunately, this also causes things to "catch" on each other occasionally.
           let path = CGPath(
-            rect: CGRect(x: row.offset * 50, y: col.offset * 50, width: 48, height: 48),
+            rect: CGRect(
+              x: row.offset * Self.blockSize,
+              y: col.offset * Self.blockSize,
+              width: Self.blockSize - 2,
+              height: Self.blockSize - 2
+            ),
             transform: nil)
           let square = SKShapeNode(path: path)
           square.userData = NSMutableDictionary()
