@@ -19,8 +19,14 @@ struct GameOverView: View {
         Text("New High Score: \(gameState.score)")
           .padding()
       }
-      Button("Restart Game", action: self.gameState.resetGame)
-        .wonkyButton()
+      if #available(macCatalyst 14.0, *) {
+        Button("Restart Game", action: self.gameState.resetGame)
+          .wonkyButton()
+          .keyboardShortcut(.defaultAction)
+      } else {
+        Button("Restart Game", action: self.gameState.resetGame)
+          .wonkyButton()
+      }
       Button("Main Menu") {
         gameState.gameStarted = false
         gameState.gameOver = false
