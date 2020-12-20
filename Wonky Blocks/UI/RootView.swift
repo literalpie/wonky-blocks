@@ -22,9 +22,9 @@ struct RootView: View {
           if gameState.gameStarted && size.size.width <= size.size.height && !gameState.gameOver {
             HStack {
               #if targetEnvironment(macCatalyst)
-              if gameState.gameStarted && showInstructions {
-                InstructionsView(layoutDirection: .horizontal)
-              }
+                if gameState.gameStarted && showInstructions {
+                  InstructionsView(layoutDirection: .horizontal)
+                }
               #endif
               Spacer()
               ScoreBoardView()
@@ -51,9 +51,9 @@ struct RootView: View {
                 Spacer()
                 Group {
                   #if targetEnvironment(macCatalyst)
-                  if showInstructions {
-                    InstructionsView(layoutDirection: .vertical)
-                  }
+                    if showInstructions {
+                      InstructionsView(layoutDirection: .vertical)
+                    }
                   #endif
                 }
               }
@@ -62,15 +62,15 @@ struct RootView: View {
         }
         // we don't want this to get in the way of button presses
         #if !targetEnvironment(macCatalyst)
-        if gameState.gameStarted, !gameState.gameOver {
-          VStack {
-            Spacer(minLength: size.size.height / 2)  // cause joysticks to only be on bottom half so buttons can be pressed
-            HStack(spacing: 0) {
-              Joystick(state: self.$joyState, radius: 50)
-              Joystick(state: self.$rotateState, radius: 50)
+          if gameState.gameStarted, !gameState.gameOver {
+            VStack {
+              Spacer(minLength: size.size.height / 2)  // cause joysticks to only be on bottom half so buttons can be pressed
+              HStack(spacing: 0) {
+                Joystick(state: self.$joyState, radius: 50)
+                Joystick(state: self.$rotateState, radius: 50)
+              }
             }
           }
-        }
         #endif
       }
       .onAppear {

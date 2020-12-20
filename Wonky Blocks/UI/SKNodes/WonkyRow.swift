@@ -16,10 +16,14 @@ class WonkyRow: SKShapeNode {
   init(rowNumber: Int = 0) {
     super.init()
     let rowSize = CGSize(width: Self.rowWidth, height: Self.rowHeight)
-    let rowCenter = CGPoint(x: rowSize.width / 2, y: rowSize.height / 2 + (CGFloat(Self.rowHeight * rowNumber)))
+    let rowCenter = CGPoint(
+      x: rowSize.width / 2, y: rowSize.height / 2 + (CGFloat(Self.rowHeight * rowNumber)))
     self.path = CGPath(
-      rect: CGRect(x: 0, y: Self.rowHeight * rowNumber, width: Self.rowWidth, height: Self.rowHeight),
-      transform: nil)
+      rect: CGRect(
+        x: 0, y: Self.rowHeight * rowNumber, width: Self.rowWidth, height: Self.rowHeight
+      ),
+      transform: nil
+    )
     physicsBody = SKPhysicsBody(
       rectangleOf: rowSize, center: CGPoint(x: rowCenter.x, y: rowCenter.y))
     physicsBody?.affectedByGravity = true

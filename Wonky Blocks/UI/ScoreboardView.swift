@@ -25,17 +25,17 @@ struct ScoreBoardView: View {
         Text("High Score: \(highScore)")
       }
       if gameState.gameStarted && !gameState.gameOver {
-          VStack(alignment: .center) {
-            Button("Main Menu") {
-              gameState.gameStarted = false
-            }
-            .wonkyButton()
-            
-            Button(gameState.paused ? "Resume" : "Pause") {
-              gameState.paused.toggle()
-            }
-            .wonkyButton()
+        VStack(alignment: .center) {
+          Button("Main Menu") {
+            gameState.gameStarted = false
           }
+          .wonkyButton()
+
+          Button(gameState.paused ? "Resume" : "Pause") {
+            gameState.paused.toggle()
+          }
+          .wonkyButton()
+        }
       }
     }
   }

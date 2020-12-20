@@ -33,17 +33,18 @@ struct MainMenuView: View {
         .padding()
       }
       Text("High Score: \(gameState.highScore)")
-        Button("Reset High Score") {
-          gameState.resetHighScore()
-        }
-        .wonkyButton()
+      Button("Reset High Score") {
+        gameState.resetHighScore()
+      }
+      .wonkyButton()
     }
   }
 }
 
 struct WonkyButton: ViewModifier {
   func body(content: Content) -> some View {
-    return content
+    return
+      content
       .foregroundColor(.primary)
       .font(.headline)
       .padding(5)

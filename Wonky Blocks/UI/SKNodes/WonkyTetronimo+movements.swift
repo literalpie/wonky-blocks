@@ -6,8 +6,8 @@
 //  Copyright © 2020 Benjamin Kindle. All rights reserved.
 //
 
-import Foundation
 import CoreGraphics
+import Foundation
 
 extension WonkyTetronimo {
   func moveLeft() {

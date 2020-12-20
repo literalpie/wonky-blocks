@@ -40,7 +40,10 @@ struct PiecePreviewView: UIViewRepresentable {
       scene.isPaused = false
       piece.removeFromParent()
       scene.addChild(piece)
-      piece.position = CGPoint(x: Self.previewSize / 2 - piece.center.x, y: Self.previewSize / 2 - piece.center.y)
+      piece.position = CGPoint(
+        x: Self.previewSize / 2 - piece.center.x,
+        y: Self.previewSize / 2 - piece.center.y
+      )
       scene.isPaused = true
     }
   }

@@ -127,7 +127,8 @@ class WonkyGameViewController: UIViewController {
     }
     allCans.append(contactCan)
     let activeTetCan = self.gameState.$activeTet.sink { (newActive) in
-      let newPieceXPosition = (CGFloat(WonkyGameBoard.width) / 2) + WonkyRowIndicator.indicatorWidth - newActive.center.x
+      let newPieceXPosition =
+        (CGFloat(WonkyGameBoard.width) / 2) + WonkyRowIndicator.indicatorWidth - newActive.center.x
       newActive.position = CGPoint(x: newPieceXPosition, y: CGFloat(WonkyGameBoard.height))
       newActive.removeFromParent()  // removes from preview scene
       self.spriteKitView.scene?.addChild(newActive)

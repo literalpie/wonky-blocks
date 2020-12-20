@@ -28,7 +28,10 @@ class WonkyGameBoard: SKNode {
 
     let ground = SKShapeNode(rect: CGRect(x: 0, y: 0, width: Self.width, height: 0))
     ground.name = "ground"
-    ground.physicsBody = SKPhysicsBody(edgeFrom: CGPoint(x: 0, y: -2), to: CGPoint(x: Self.width, y: -2))
+    ground.physicsBody = SKPhysicsBody(
+      edgeFrom: CGPoint(x: 0, y: -2),
+      to: CGPoint(x: Self.width, y: -2)
+    )
     ground.physicsBody?.categoryBitMask = groundCategory
 
     self.addChild(leftWall)
