@@ -10,13 +10,14 @@ import SpriteKit
 import SwiftUI
 
 struct PiecePreviewView: UIViewRepresentable {
+  static let previewSize: CGFloat = 300
   func makeCoordinator() -> Coordinator {
     return Coordinator(view: SKView())
   }
   var piece: WonkyTetronimo
 
   func makeUIView(context: Context) -> SKView {
-    let scene = SKScene(size: CGSize(width: 300, height: 300))
+    let scene = SKScene(size: CGSize(width: Self.previewSize, height: Self.previewSize))
     let view = context.coordinator.view
     view.presentScene(scene)
     position(piece, in: scene)
@@ -32,11 +33,20 @@ struct PiecePreviewView: UIViewRepresentable {
   }
 
   func position(_ piece: WonkyTetronimo, in scene: SKScene) {
-    scene.isPaused = false
-    piece.removeFromParent()
-    scene.addChild(piece)
-    piece.position = CGPoint(x: 150 - (piece.center.x), y: 150 - piece.center.y)
-    scene.isPaused = true
+    // async makes sure other view is dismantled before we position.
+    // /(this is a workaround. A better solution would be better)
+    DispatchQueue.main.async {
+      guard piece.parent != scene else { return }
+      scene.isPaused = false
+      piece.removeFromParent()
+      scene.addChild(piece)
+      piece.position = CGPoint(x: Self.previewSize / 2 - piece.center.x, y: Self.previewSize / 2 - piece.center.y)
+      scene.isPaused = true
+    }
+  }
+
+  static func dismantleUIView(_ uiView: SKView, coordinator: Coordinator) {
+    uiView.scene?.children.forEach { $0.removeFromParent() }
   }
 
   class Coordinator {
