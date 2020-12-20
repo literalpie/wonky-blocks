@@ -21,9 +21,11 @@ struct RootView: View {
         VStack(spacing: 0) {
           if gameState.gameStarted && size.size.width <= size.size.height && !gameState.gameOver {
             HStack {
+              #if targetEnvironment(macCatalyst)
               if gameState.gameStarted && showInstructions {
                 InstructionsView(layoutDirection: .horizontal)
               }
+              #endif
               Spacer()
               ScoreBoardView()
               PiecePreviewView(piece: self.gameState.nextTet)
@@ -48,15 +50,18 @@ struct RootView: View {
                   .padding(10)
                 Spacer()
                 Group {
+                  #if targetEnvironment(macCatalyst)
                   if showInstructions {
                     InstructionsView(layoutDirection: .vertical)
                   }
+                  #endif
                 }
               }
             }
           }
         }
         // we don't want this to get in the way of button presses
+        #if !targetEnvironment(macCatalyst)
         if gameState.gameStarted, !gameState.gameOver {
           VStack {
             Spacer(minLength: size.size.height / 2)  // cause joysticks to only be on bottom half so buttons can be pressed
@@ -66,6 +71,7 @@ struct RootView: View {
             }
           }
         }
+        #endif
       }
       .onAppear {
         DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
