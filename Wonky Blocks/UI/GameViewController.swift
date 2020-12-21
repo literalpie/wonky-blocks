@@ -12,7 +12,7 @@ import SwiftClipper
 import UIKit
 
 class WonkyGameViewController: UIViewController {
-  static let rowFilledThreshold: CGFloat = 17000
+  static let rowFilledThreshold: CGFloat = 16000
 
   var spriteKitView: SKView {
     return self.view as! SKView
