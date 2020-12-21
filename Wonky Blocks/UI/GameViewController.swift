@@ -31,6 +31,8 @@ class WonkyGameViewController: UIViewController {
   }
 
   deinit {
+    spriteKitView.scene?.isPaused = true
+    spriteKitView.presentScene(nil)
     physicsController.can?.cancel()
     allCans.forEach { $0.cancel() }
   }
@@ -57,6 +59,7 @@ class WonkyGameViewController: UIViewController {
 
     // update row indicators (this block doesn't remove ant rows)
     let timerCan = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect().sink { (_) in
+      
       DispatchQueue.global(qos: .background).async {
         // gets the percentage that each row is filled compared to the target required to clear a row
         let rowStates = self.rows.map { $0.calculateRowArea() / Self.rowFilledThreshold }

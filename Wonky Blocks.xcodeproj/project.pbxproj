@@ -77,6 +77,7 @@
 		45A248C424965BB40030EC50 /* physicsCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = physicsCategories.swift; sourceTree = "<group>"; };
 		45BEC135244E5D6400B38F83 /* SwiftClipperPath+asCgPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftClipperPath+asCgPath.swift"; sourceTree = "<group>"; };
 		45CFA6FC2590FA42000509BB /* Screenshots-instructions.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Screenshots-instructions.md"; sourceTree = "<group>"; };
+		45CFA6FF25910D7E000509BB /* app-store-description.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "app-store-description.md"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +119,7 @@
 		45525A5C244C7FD4004974AB = {
 			isa = PBXGroup;
 			children = (
+				45CFA6FF25910D7E000509BB /* app-store-description.md */,
 				45CFA6FC2590FA42000509BB /* Screenshots-instructions.md */,
 				459133A42496CAE6006BAC3D /* README.md */,
 				45332F4924ECA14500F7A72C /* Documentation */,
@@ -446,7 +448,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Wonky Blocks/Wonky Blocks.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"Wonky Blocks/Preview Content\"";
 				DEVELOPMENT_TEAM = Z6E4CU9G46;
 				ENABLE_PREVIEWS = YES;
@@ -469,7 +471,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Wonky Blocks/Wonky Blocks.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"Wonky Blocks/Preview Content\"";
 				DEVELOPMENT_TEAM = Z6E4CU9G46;
 				ENABLE_PREVIEWS = YES;
