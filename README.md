@@ -6,6 +6,8 @@ Inspired by [Not Tetris 2](https://stabyourself.net/nottetris2/), made for Apple
 
 ![short animation showing a tetris piece dropping, and a line getting cleared](./Documentation/preview.gif)
 
+[<img src="./Documentation/download-on-the-app-store.svg">](https://apps.apple.com/app/wonky-blocks/id1518895900)
+
 ## How to Play
 Your goal is to last as long as possible without letting the pile reach the top of the board by removing as many lines as possible. A line is removed when the area of pieces in the row is high enough. Gain more points by removing multiple lines at once. Unlike normal Tetris, pieces do not rotate in 90 degree increments or fall one line at a time.
 
