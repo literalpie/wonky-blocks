@@ -11,8 +11,6 @@ import SwiftUI
 
 struct RootView: View {
   @EnvironmentObject var gameState: WonkyGameState
-  @State var joyState: JoyState = .inactive
-  @State var rotateState: JoyState = .inactive
   @State var showInstructions = true
 
   var body: some View {
@@ -39,7 +37,7 @@ struct RootView: View {
             } else if gameState.gameOver {
               GameOverView()
             } else {
-              GameView(joyState: self.$joyState, rotateState: self.$rotateState)
+              GameView()
             }
             if size.size.width > size.size.height, gameState.gameStarted, !gameState.gameOver {
               VStack {
@@ -66,8 +64,8 @@ struct RootView: View {
             VStack {
               Spacer(minLength: size.size.height / 2)  // cause joysticks to only be on bottom half so buttons can be pressed
               HStack(spacing: 0) {
-                Joystick(state: self.$joyState, radius: 50)
-                Joystick(state: self.$rotateState, radius: 50)
+                Joystick(state: $gameState.movementJoyState, radius: 50)
+                Joystick(state: $gameState.rotationJoyState, radius: 50)
               }
             }
           }

@@ -17,7 +17,12 @@ class UserDefaultsObject: ObservableObject {
   }
 }
 
-class WonkyGameState: ObservableObject {
+protocol JoystickState {
+  var movementJoyState: JoyState {get set}
+  var rotationJoyState: JoyState {get set}
+}
+
+class WonkyGameState: ObservableObject, JoystickState {
   private var userDefaults: UserDefaultsObject = UserDefaultsObject()
   @Published var score = 0
   @Published var lineCount = 0
@@ -32,6 +37,9 @@ class WonkyGameState: ObservableObject {
 
   @Published var activeTet: WonkyTetronimo = WonkyTetronimo.randomTetronimo()
   @Published var nextTet: WonkyTetronimo = WonkyTetronimo.randomTetronimo()
+  
+  @Published var movementJoyState: JoyState = .inactive
+  @Published var rotationJoyState: JoyState = .inactive
 
   init() {
     self.highScore = userDefaults.highScore

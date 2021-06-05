@@ -21,7 +21,7 @@
 		455C620F2586623300CED915 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455C620E2586623300CED915 /* GameOverView.swift */; };
 		455C62122586624F00CED915 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455C62112586624F00CED915 /* MainMenuView.swift */; };
 		45A248A2249656E10030EC50 /* GamePhysicsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A248A1249656E10030EC50 /* GamePhysicsController.swift */; };
-		45A248A4249657210030EC50 /* GamePhysicsController+keyboardControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A248A3249657210030EC50 /* GamePhysicsController+keyboardControls.swift */; };
+		45A248A4249657210030EC50 /* GamePhysicsController+controls in Sources */ = {isa = PBXBuildFile; fileRef = 45A248A3249657210030EC50 /* GamePhysicsController+controls */; };
 		45A248A6249657700030EC50 /* tetronimoShapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A248A5249657700030EC50 /* tetronimoShapes.swift */; };
 		45A248A8249657B90030EC50 /* GCPath+CGPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A248A7249657B90030EC50 /* GCPath+CGPoints.swift */; };
 		45A248AC2496586C0030EC50 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A248AB2496586C0030EC50 /* RootView.swift */; };
@@ -59,7 +59,7 @@
 		456A80E4244D013F00E5E119 /* Wonky Blocks.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Wonky Blocks.entitlements"; sourceTree = "<group>"; };
 		459133A42496CAE6006BAC3D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		45A248A1249656E10030EC50 /* GamePhysicsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePhysicsController.swift; sourceTree = "<group>"; };
-		45A248A3249657210030EC50 /* GamePhysicsController+keyboardControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GamePhysicsController+keyboardControls.swift"; sourceTree = "<group>"; };
+		45A248A3249657210030EC50 /* GamePhysicsController+controls */ = {isa = PBXFileReference; lastKnownFileType = text; path = "GamePhysicsController+controls"; sourceTree = "<group>"; };
 		45A248A5249657700030EC50 /* tetronimoShapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tetronimoShapes.swift; sourceTree = "<group>"; };
 		45A248A7249657B90030EC50 /* GCPath+CGPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GCPath+CGPoints.swift"; sourceTree = "<group>"; };
 		45A248AB2496586C0030EC50 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -167,7 +167,7 @@
 				0088A40625275EA000A1035F /* color */,
 				45BEC135244E5D6400B38F83 /* SwiftClipperPath+asCgPath.swift */,
 				45A248A1249656E10030EC50 /* GamePhysicsController.swift */,
-				45A248A3249657210030EC50 /* GamePhysicsController+keyboardControls.swift */,
+				45A248A3249657210030EC50 /* GamePhysicsController+controls */,
 				45A248A5249657700030EC50 /* tetronimoShapes.swift */,
 				45A248A7249657B90030EC50 /* GCPath+CGPoints.swift */,
 				45A248B3249659180030EC50 /* GameState.swift */,
@@ -237,7 +237,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1140;
-				LastUpgradeCheck = 1140;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = "Benjamin Kindle";
 				TargetAttributes = {
 					45525A64244C7FD4004974AB = {
@@ -293,7 +293,7 @@
 				45A248B2249658D80030EC50 /* GameView.swift in Sources */,
 				453A3E93258A4DAD001D6C87 /* InstructionsView.swift in Sources */,
 				45A248BB24965ACD0030EC50 /* WonkyRowIndicatorSpace.swift in Sources */,
-				45A248A4249657210030EC50 /* GamePhysicsController+keyboardControls.swift in Sources */,
+				45A248A4249657210030EC50 /* GamePhysicsController+controls in Sources */,
 				45A248A8249657B90030EC50 /* GCPath+CGPoints.swift in Sources */,
 				45A248B7249659A90030EC50 /* WonkyGameBoard.swift in Sources */,
 				450255AD25852F50003BE6E6 /* WonkyTetronimo+movements.swift in Sources */,
@@ -354,6 +354,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -414,6 +415,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -453,6 +455,8 @@
 				DEVELOPMENT_TEAM = Z6E4CU9G46;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Wonky Blocks/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -461,7 +465,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Debug;
 		};
@@ -476,6 +480,8 @@
 				DEVELOPMENT_TEAM = Z6E4CU9G46;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Wonky Blocks/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -484,7 +490,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Release;
 		};

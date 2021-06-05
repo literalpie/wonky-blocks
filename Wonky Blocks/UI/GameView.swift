@@ -10,12 +10,11 @@ import SwiftUI
 
 struct GameView: UIViewControllerRepresentable {
   @EnvironmentObject var gameState: WonkyGameState
-  @Binding var joyState: JoyState
-  @Binding var rotateState: JoyState
 
   func makeUIViewController(context: Context) -> WonkyGameViewController {
     let controller = WonkyGameViewController()
     controller.gameState = self.gameState
+    controller.physicsController.joystickState = gameState
     return controller
   }
 
@@ -23,14 +22,9 @@ struct GameView: UIViewControllerRepresentable {
     _ uiViewController: WonkyGameViewController,
     context: Context
   ) {
-    if !uiViewController.physicsController.keyboardUsed {
-      uiViewController.physicsController.leftPressed = joyState.translation.width < -20
-      uiViewController.physicsController.rightPressed = joyState.translation.width > 20
-      uiViewController.physicsController.downPressed = joyState.translation.height > 20
-      uiViewController.physicsController.upPressed = joyState.translation.height < -20
-      uiViewController.physicsController.rotateLeftPressed = rotateState.translation.width < -20
-      uiViewController.physicsController.rotateRightPressed = rotateState.translation.width > 20
-    }
+//    joystickState.joyState = gameState.movementJoyState
+//    joystickState.rotateState = gameState.rotationJoyState
+
     uiViewController.spriteKitView.isPaused = gameState.paused
   }
 

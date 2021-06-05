@@ -9,16 +9,10 @@
 import Combine
 import SpriteKit
 
-//import SwiftClipper
-
 class GamePhysicsController: NSObject, SKPhysicsContactDelegate {
   var can: Cancellable?
-  var leftPressed = false
-  var rightPressed = false
-  var upPressed = false
-  var downPressed = false
-  var rotateLeftPressed = false
-  var rotateRightPressed = false
+  var joystickState: JoystickState?
+
   /// if the keyboard is ever used, joystick movement will be disabled
   var keyboardUsed = false
 

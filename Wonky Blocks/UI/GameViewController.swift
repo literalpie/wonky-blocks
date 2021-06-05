@@ -106,9 +106,6 @@ class WonkyGameViewController: UIViewController {
       if !removingRows.isEmpty {
         let removingRowData = self.getSequentialNumbers(in: removingRows)
         let removingRowShapes = self.rowShapes(from: removingRowData)
-        // TODO: this only handles the first row/set of rows. We will need to remove all rows
-        // The tricky thing is that we will need to be careful to remove additional rows based on the _newNodes_,
-        // not the existing oldNodes which may not exist in the same shape anymore.
         removingRowShapes.forEach { (rowToRemove) in
           let (newNodes, oldNodes) = self.remove(
             intersectingNodes: breakageCandidates, fromRow: rowToRemove)
@@ -139,18 +136,6 @@ class WonkyGameViewController: UIViewController {
       self.physicsController.activePiece = newActive
     }
     allCans.append(activeTetCan)
-  }
-
-  override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
-    if (presses.contains { $0.key?.keyCode == .keyboardReturnOrEnter }) {
-      self.gameState.paused.toggle()
-    }
-
-    self.physicsController.pressesBegan(presses, with: event)
-  }
-
-  override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
-    self.physicsController.pressesEnded(presses, with: event)
   }
 
   /// given the starting index and span of sets of rows, returns a shape representing the shape and size of the combined rows.
