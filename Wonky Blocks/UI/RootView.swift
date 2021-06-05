@@ -8,10 +8,18 @@
 
 import Foundation
 import SwiftUI
+import GameController
 
 struct RootView: View {
   @EnvironmentObject var gameState: WonkyGameState
+  @Environment(\.horizontalSizeClass) var horizontalSizeClass: UserInterfaceSizeClass?
+  @Environment(\.verticalSizeClass) var verticalSizeClass: UserInterfaceSizeClass?
+
   @State var showInstructions = true
+  
+  var keyboardConnected: Bool {
+    return GCKeyboard.coalesced != nil
+  }
 
   var body: some View {
     GeometryReader { (size: GeometryProxy) in
@@ -19,11 +27,9 @@ struct RootView: View {
         VStack(spacing: 0) {
           if gameState.gameStarted && size.size.width <= size.size.height && !gameState.gameOver {
             HStack {
-              #if targetEnvironment(macCatalyst)
-                if gameState.gameStarted && showInstructions {
-                  InstructionsView(layoutDirection: .horizontal)
-                }
-              #endif
+              if gameState.gameStarted && showInstructions && keyboardConnected && horizontalSizeClass == .regular {
+                InstructionsView(layoutDirection: .horizontal)
+              }
               Spacer()
               ScoreBoardView()
               PiecePreviewView(piece: self.gameState.nextTet)
@@ -48,11 +54,9 @@ struct RootView: View {
                   .padding(10)
                 Spacer()
                 Group {
-                  #if targetEnvironment(macCatalyst)
-                    if showInstructions {
-                      InstructionsView(layoutDirection: .vertical)
-                    }
-                  #endif
+                  if showInstructions && keyboardConnected && keyboardConnected && verticalSizeClass == .regular {
+                    InstructionsView(layoutDirection: .vertical)
+                  }
                 }
               }
             }
