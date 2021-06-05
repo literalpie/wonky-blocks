@@ -151,6 +151,25 @@ class WonkyGameViewController: UIViewController {
     }
     return nodes
   }
+  
+  override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+    if (presses.contains { $0.key?.keyCode == .keyboardReturnOrEnter }) {
+      self.gameState.paused.toggle()
+    }
+    let actionKeys: [UIKeyboardHIDUsage] = [
+      .keyboardReturnOrEnter,
+      .keyboardZ,
+      .keyboardX,
+      .keyboardLeftArrow,
+      .keyboardRightArrow,
+      .keyboardUpArrow,
+      .keyboardDownArrow,
+    ]
+    // let the system handle keys that aren't used by the game
+    if !(presses.contains { actionKeys.contains($0.key?.keyCode ?? .keyboard0) }) {
+      super.pressesBegan(presses, with: event)
+    }
+  }
 
   /// given a set of row numbers, returns the index where each set of matching numbers starts, and the number of rows that it spans.
   func getSequentialNumbers(in numbersArray: [Int]) -> [(rowOffset: Int, rowCount: Int)] {
