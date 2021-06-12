@@ -10,33 +10,37 @@ import CoreGraphics
 import Foundation
 
 extension WonkyTetronimo {
-  func moveLeft() {
+  func moveLeft(withStrength: Float?) {
     let xVelocity = self.physicsBody?.velocity.dx
-    self.physicsBody?.velocity.dx = [xVelocity! - 50, CGFloat(-300)].max()!
+    let strength = withStrength != nil ? withStrength! * 1.5 : 1
+    self.physicsBody?.velocity.dx = [xVelocity! - (50 * CGFloat(strength)), CGFloat(-300)].max()!
   }
 
-  func moveRight() {
+  func moveRight(withStrength: Float?) {
     let xVelocity = self.physicsBody?.velocity.dx
-    self.physicsBody?.velocity.dx = [xVelocity! + 50, CGFloat(300)].min()!
+    let strength = withStrength != nil ? withStrength! * 1.5 : 1
+    self.physicsBody?.velocity.dx = [xVelocity! + (50 * CGFloat(strength)), CGFloat(300)].min()!
   }
 
-  func moveDown() {
+  func moveDown(withStrength: Float?) {
     let yVelocity = self.physicsBody?.velocity.dy
-    self.physicsBody?.velocity.dy = [yVelocity! - 40, CGFloat(-400 - minimumVelocity)].max()!
+    self.physicsBody?.velocity.dy = [yVelocity! - (40 * CGFloat(withStrength ?? 1)), CGFloat(-400 - minimumVelocity)].max()!
   }
 
-  func moveUp() {
+  func moveUp(withStrength: Float?) {
     let yVelocity = self.physicsBody?.velocity.dy
-    self.physicsBody?.velocity.dy = [yVelocity! + 40, CGFloat(-minimumVelocity)].min()!
+    self.physicsBody?.velocity.dy = [yVelocity! + (40 * CGFloat(withStrength ?? 1)), CGFloat(-minimumVelocity)].min()!
   }
 
-  func rotateLeft() {
+  func rotateLeft(withStrength: Float?) {
     let rVelocity = self.physicsBody?.angularVelocity
-    self.physicsBody?.angularVelocity = [rVelocity! + 0.7, CGFloat(2.8)].min()!
+    let strength = withStrength != nil ? withStrength! * 1.5 : 1
+    self.physicsBody?.angularVelocity = [rVelocity! + (0.7 * CGFloat(strength)), CGFloat(2.8)].min()!
   }
 
-  func rotateRight() {
+  func rotateRight(withStrength: Float?) {
     let rVelocity = self.physicsBody?.angularVelocity
-    self.physicsBody?.angularVelocity = [rVelocity! - 0.7, CGFloat(-2.8)].max()!
+    let strength = withStrength != nil ? withStrength! * 1.5 : 1
+    self.physicsBody?.angularVelocity = [rVelocity! - (0.7 * CGFloat(strength)), CGFloat(-2.8)].max()!
   }
 }

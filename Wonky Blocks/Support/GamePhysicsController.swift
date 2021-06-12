@@ -18,6 +18,7 @@ class GamePhysicsController: NSObject, SKPhysicsContactDelegate {
 
   override init() {
     super.init()
+    // TODO: poll input on every frame (renderer updateAtTime), not based on a timer
     can = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect().sink(receiveValue: {
       (_) in
       self.handleKeyEvents()

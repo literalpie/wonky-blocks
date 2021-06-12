@@ -68,8 +68,8 @@ struct RootView: View {
             VStack {
               Spacer(minLength: size.size.height / 2)  // cause joysticks to only be on bottom half so buttons can be pressed
               HStack(spacing: 0) {
-                Joystick(state: $gameState.movementJoyState, radius: 50)
-                Joystick(state: $gameState.rotationJoyState, radius: 50)
+                Joystick(state: $gameState.movementJoyState, radius: 100)
+                Joystick(state: $gameState.rotationJoyState, radius: 100)
               }
             }
           }
