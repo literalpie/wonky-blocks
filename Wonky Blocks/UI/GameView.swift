@@ -22,9 +22,6 @@ struct GameView: UIViewControllerRepresentable {
     _ uiViewController: WonkyGameViewController,
     context: Context
   ) {
-//    joystickState.joyState = gameState.movementJoyState
-//    joystickState.rotateState = gameState.rotationJoyState
-
     uiViewController.spriteKitView.isPaused = gameState.paused
   }
 
@@ -32,6 +29,5 @@ struct GameView: UIViewControllerRepresentable {
     _ uiViewController: WonkyGameViewController, coordinator: ()
   ) {
     uiViewController.allCans.forEach { $0.cancel() }
-    uiViewController.physicsController.can?.cancel()
   }
 }

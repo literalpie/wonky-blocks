@@ -10,8 +10,9 @@ import Combine
 import SpriteKit
 import SwiftClipper
 import UIKit
+import GameController
 
-class WonkyGameViewController: UIViewController {
+class WonkyGameViewController: UIViewController, SKSceneDelegate {
   static let rowFilledThreshold: CGFloat = 16000
 
   var spriteKitView: SKView {
@@ -29,12 +30,24 @@ class WonkyGameViewController: UIViewController {
   var minimumSpeed: CGFloat {
     return [CGFloat(100 + self.gameState.level * 20), CGFloat(340)].min()!
   }
+  private var lastUpdateTime = TimeInterval()
 
   deinit {
     spriteKitView.scene?.isPaused = true
     spriteKitView.presentScene(nil)
-    physicsController.can?.cancel()
     allCans.forEach { $0.cancel() }
+  }
+  
+  func update(_ currentTime: TimeInterval, for scene: SKScene) {
+    if lastUpdateTime == 0 {
+      lastUpdateTime = currentTime
+    }
+    let delta = currentTime - lastUpdateTime
+    lastUpdateTime = currentTime
+
+    if !gameState.paused {
+      physicsController.handleKeyEvents(delta: delta)
+    }
   }
 
   override func viewDidLoad() {
@@ -42,6 +55,7 @@ class WonkyGameViewController: UIViewController {
     let sceneWidth = WonkyGameBoard.width + Int(WonkyRowIndicator.indicatorWidth)
     let scene = SKScene(size: CGSize(width: sceneWidth, height: WonkyGameBoard.height))
     scene.scaleMode = .aspectFit
+    scene.delegate = self
 
     self.rows = Array(0...15).map { (offset) in
       WonkyRow(rowNumber: offset)
@@ -59,12 +73,13 @@ class WonkyGameViewController: UIViewController {
 
     // update row indicators (this block doesn't remove ant rows)
     let timerCan = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect().sink { (_) in
-      
       DispatchQueue.global(qos: .background).async {
-        // gets the percentage that each row is filled compared to the target required to clear a row
-        let rowStates = self.rows.map { $0.calculateRowArea() / Self.rowFilledThreshold }
-        DispatchQueue.main.async {
-          self.rowIndicatorSpace.updateAllRowIndicators(rowStates: rowStates)
+        if !self.gameState.paused {
+          // gets the percentage that each row is filled compared to the target required to clear a row
+          let rowStates = self.rows.map { $0.calculateRowArea() / Self.rowFilledThreshold }
+          DispatchQueue.main.async {
+            self.rowIndicatorSpace.updateAllRowIndicators(rowStates: rowStates)
+          }
         }
       }
     }
@@ -155,6 +170,7 @@ class WonkyGameViewController: UIViewController {
   override func pressesBegan(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
     if (presses.contains { $0.key?.keyCode == .keyboardReturnOrEnter }) {
       self.gameState.paused.toggle()
+      lastUpdateTime = TimeInterval()
     }
     let actionKeys: [UIKeyboardHIDUsage] = [
       .keyboardReturnOrEnter,

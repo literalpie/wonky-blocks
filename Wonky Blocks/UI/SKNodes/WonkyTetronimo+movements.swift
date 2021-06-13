@@ -9,38 +9,47 @@
 import CoreGraphics
 import Foundation
 
+var startLeftTime:UInt64?
+
 extension WonkyTetronimo {
-  func moveLeft(withStrength: Float?) {
+  func moveLeft(withStrength: Float?, multiplier: CGFloat = 1) {
+    let xVelocity = self.physicsBody?.velocity.dx
+    if xVelocity == 0 {
+      startLeftTime = DispatchTime.now().uptimeNanoseconds
+    }
+    let strength = withStrength != nil ? withStrength! * 1.5 : 1
+    self.physicsBody?.velocity.dx = [xVelocity! - (50 * CGFloat(strength) * multiplier), CGFloat(-300)].max()!
+    if self.physicsBody?.velocity.dx == -300, let thestartLeftTime = startLeftTime {
+      print("total time: \(DispatchTime.now().uptimeNanoseconds - (thestartLeftTime))")
+      startLeftTime = nil
+    }
+  }
+
+  func moveRight(withStrength: Float?, multiplier: CGFloat = 1) {
     let xVelocity = self.physicsBody?.velocity.dx
     let strength = withStrength != nil ? withStrength! * 1.5 : 1
-    self.physicsBody?.velocity.dx = [xVelocity! - (50 * CGFloat(strength)), CGFloat(-300)].max()!
+    self.physicsBody?.velocity.dx = [xVelocity! + (50 * CGFloat(strength) * multiplier), CGFloat(300)].min()!
   }
 
-  func moveRight(withStrength: Float?) {
-    let xVelocity = self.physicsBody?.velocity.dx
-    let strength = withStrength != nil ? withStrength! * 1.5 : 1
-    self.physicsBody?.velocity.dx = [xVelocity! + (50 * CGFloat(strength)), CGFloat(300)].min()!
-  }
-
-  func moveDown(withStrength: Float?) {
+  func moveDown(withStrength: Float?, multiplier: CGFloat = 1) {
     let yVelocity = self.physicsBody?.velocity.dy
-    self.physicsBody?.velocity.dy = [yVelocity! - (40 * CGFloat(withStrength ?? 1)), CGFloat(-400 - minimumVelocity)].max()!
+    self.physicsBody?.velocity.dy = [yVelocity! - (40 * CGFloat(withStrength ?? 1) * multiplier), CGFloat(-400 - minimumVelocity)].max()!
   }
 
-  func moveUp(withStrength: Float?) {
+  func moveUp(withStrength: Float?, multiplier: CGFloat = 1) {
     let yVelocity = self.physicsBody?.velocity.dy
-    self.physicsBody?.velocity.dy = [yVelocity! + (40 * CGFloat(withStrength ?? 1)), CGFloat(-minimumVelocity)].min()!
+    self.physicsBody?.velocity.dy = [yVelocity! + (40 * CGFloat(withStrength ?? 1) * multiplier), CGFloat(-minimumVelocity)].min()!
   }
 
-  func rotateLeft(withStrength: Float?) {
+  func rotateLeft(withStrength: Float?, multiplier: CGFloat = 1) {
     let rVelocity = self.physicsBody?.angularVelocity
     let strength = withStrength != nil ? withStrength! * 1.5 : 1
-    self.physicsBody?.angularVelocity = [rVelocity! + (0.7 * CGFloat(strength)), CGFloat(2.8)].min()!
+    self.physicsBody?.angularVelocity = [rVelocity! + (0.7 * CGFloat(strength) * multiplier), CGFloat(2.8)].min()!
   }
 
-  func rotateRight(withStrength: Float?) {
+  func rotateRight(withStrength: Float?, multiplier: CGFloat = 1) {
     let rVelocity = self.physicsBody?.angularVelocity
     let strength = withStrength != nil ? withStrength! * 1.5 : 1
-    self.physicsBody?.angularVelocity = [rVelocity! - (0.7 * CGFloat(strength)), CGFloat(-2.8)].max()!
+    self.physicsBody?.angularVelocity = [rVelocity! - (0.7 * CGFloat(strength) * multiplier), CGFloat(-2.8)].max()!
   }
 }

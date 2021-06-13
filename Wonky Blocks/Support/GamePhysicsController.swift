@@ -16,15 +16,6 @@ class GamePhysicsController: NSObject, SKPhysicsContactDelegate {
   /// if the keyboard is ever used, joystick movement will be disabled
   var keyboardUsed = false
 
-  override init() {
-    super.init()
-    // TODO: poll input on every frame (renderer updateAtTime), not based on a timer
-    can = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect().sink(receiveValue: {
-      (_) in
-      self.handleKeyEvents()
-    })
-  }
-
   var activePiece: WonkyTetronimo?
   var activePieceContact = PassthroughSubject<Void, Never>()
 
@@ -41,9 +32,5 @@ class GamePhysicsController: NSObject, SKPhysicsContactDelegate {
     if activeTetContact && (groundContact || otherTetContact) {
       activePieceContact.send()
     }
-  }
-
-  deinit {
-    can?.cancel()
   }
 }

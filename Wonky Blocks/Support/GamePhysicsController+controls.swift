@@ -12,7 +12,12 @@ import Foundation
 import UIKit
 
 extension GamePhysicsController {
-  func handleKeyEvents() {
+  func handleKeyEvents(delta: CGFloat = 0.1) {
+    // originally made to update every 0.1 seconds.
+    // applying this multiplier based on how much time has passed makes it behave roughly the same as original
+    // This also ensures that the controls feel the same regardless of the update frequency
+    let multiplier = delta / 0.1
+    
     let keyboard = GCKeyboard.coalesced?.keyboardInput
 
     let upKeyboardPressed = keyboard?.button(forKeyCode: .upArrow)?.isPressed ?? false
@@ -70,28 +75,28 @@ extension GamePhysicsController {
     }
     if leftPressed, !rightPressed {
       let leftAmount = [leftControllerPressed, Float(horizontalJoystick) * -1].max()!
-      activePiece?.moveLeft(withStrength: leftAmount == 0 ? nil : leftAmount)
+      activePiece?.moveLeft(withStrength: leftAmount == 0 ? nil : leftAmount, multiplier: multiplier)
     }
     if rightPressed, !leftPressed {
       let rightAmount = [rightControllerPressed, Float(horizontalJoystick)].max()!
-      activePiece?.moveRight(withStrength: rightAmount == 0 ? nil : rightAmount)
+      activePiece?.moveRight(withStrength: rightAmount == 0 ? nil : rightAmount, multiplier: multiplier)
     }
     if downPressed, !upPressed {
 
       let downAmount = [downControllerPressed, Float(verticalJoystick)].max()!
-      activePiece?.moveDown(withStrength: downAmount == 0 ? nil : downAmount)
+      activePiece?.moveDown(withStrength: downAmount == 0 ? nil : downAmount, multiplier: multiplier)
     }
     if upPressed, !downPressed {
       let upAmount = [upControllerPressed, Float(verticalJoystick) * -1].max()!
-      activePiece?.moveUp(withStrength: upAmount == 0 ? nil : upAmount)
+      activePiece?.moveUp(withStrength: upAmount == 0 ? nil : upAmount, multiplier: multiplier)
     }
     if rotateLeftPressed, !rotateRightPressed {
       let rotateLeftAmount = [rotateLeftControllerPressed, Float(rotateJoystick * -1)].max()!
-      activePiece?.rotateLeft(withStrength: rotateLeftAmount == 0 ? nil : rotateLeftAmount)
+      activePiece?.rotateLeft(withStrength: rotateLeftAmount == 0 ? nil : rotateLeftAmount, multiplier: multiplier)
     }
     if rotateRightPressed, !rotateLeftPressed {
       let rotateRightAmount = [rotateRightControllerPressed, Float(rotateJoystick)].max()!
-      activePiece?.rotateRight(withStrength: rotateRightAmount == 0 ? nil : rotateRightAmount)
+      activePiece?.rotateRight(withStrength: rotateRightAmount == 0 ? nil : rotateRightAmount, multiplier: multiplier)
     }
   }
 }
