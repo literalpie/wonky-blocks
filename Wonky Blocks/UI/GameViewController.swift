@@ -73,8 +73,9 @@ class WonkyGameViewController: UIViewController, SKSceneDelegate {
 
     // update row indicators (this block doesn't remove ant rows)
     let timerCan = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect().sink { (_) in
-      DispatchQueue.global(qos: .background).async {
-        if !self.gameState.paused {
+      if !self.gameState.paused {
+        self.checkForMovedTetronimos()
+        DispatchQueue.global(qos: .background).async {
           // gets the percentage that each row is filled compared to the target required to clear a row
           let rowStates = self.rows.map { $0.calculateRowArea() / Self.rowFilledThreshold }
           DispatchQueue.main.async {
@@ -151,6 +152,14 @@ class WonkyGameViewController: UIViewController, SKSceneDelegate {
       self.physicsController.activePiece = newActive
     }
     allCans.append(activeTetCan)
+  }
+  
+  func checkForMovedTetronimos() {
+    self.spriteKitView.scene?.children.compactMap({ node in
+      return node as? WonkyTetronimo
+    }).forEach({ tet in
+      tet.updateHasMoved()
+    })
   }
 
   /// given the starting index and span of sets of rows, returns a shape representing the shape and size of the combined rows.

@@ -12,6 +12,7 @@ import SpriteKit
 class WonkyRow: SKShapeNode {
   static let rowWidth = 550
   static let rowHeight = 50
+  private var lastRowArea: CGFloat?
 
   init(rowNumber: Int = 0) {
     super.init()
@@ -42,6 +43,19 @@ class WonkyRow: SKShapeNode {
   func calculateRowArea() -> CGFloat {
     let contactingBodies = self.physicsBody?.allContactedBodies()
     let uniqueBodies = contactingBodies?.uniques
+    let anyMoved = uniqueBodies?.compactMap({ body in
+      return body.node as? WonkyTetronimo
+    }).first(where: { body in
+      body.hasMoved
+    }) != nil
+    if uniqueBodies?.isEmpty ?? true {
+      lastRowArea = 0
+      return 0
+    }
+    if let lastRowArea = lastRowArea, !anyMoved {
+      return lastRowArea
+    }
+
     let totalArea = uniqueBodies!.reduce(
       0,
       { (soFar, current) -> CGFloat in
@@ -56,6 +70,7 @@ class WonkyRow: SKShapeNode {
         }
         return totalArea
       })
+    lastRowArea = totalArea
     return totalArea
   }
 }

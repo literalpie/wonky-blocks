@@ -9,20 +9,12 @@
 import CoreGraphics
 import Foundation
 
-var startLeftTime:UInt64?
 
 extension WonkyTetronimo {
   func moveLeft(withStrength: Float?, multiplier: CGFloat = 1) {
     let xVelocity = self.physicsBody?.velocity.dx
-    if xVelocity == 0 {
-      startLeftTime = DispatchTime.now().uptimeNanoseconds
-    }
     let strength = withStrength != nil ? withStrength! * 1.5 : 1
     self.physicsBody?.velocity.dx = [xVelocity! - (50 * CGFloat(strength) * multiplier), CGFloat(-300)].max()!
-    if self.physicsBody?.velocity.dx == -300, let thestartLeftTime = startLeftTime {
-      print("total time: \(DispatchTime.now().uptimeNanoseconds - (thestartLeftTime))")
-      startLeftTime = nil
-    }
   }
 
   func moveRight(withStrength: Float?, multiplier: CGFloat = 1) {

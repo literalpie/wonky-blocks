@@ -22,6 +22,9 @@ class WonkyTetronimo: SKShapeNode {
   }
   var color: UIColor
   var minimumVelocity: CGFloat = 100
+  private var lastPosition: CGPoint?
+  var hasMoved = false
+  
 
   static func randomTetronimo() -> WonkyTetronimo {
     return self.init(WonkyTetronimo.tetronimoTypes.randomElement()!)
@@ -128,5 +131,15 @@ class WonkyTetronimo: SKShapeNode {
     physicsBody?.affectedByGravity = true
     physicsBody?.categoryBitMask = tetCategory
     physicsBody?.density = 1
+  }
+  
+  func updateHasMoved() {
+    if lastPosition == nil {
+      hasMoved = true
+      lastPosition = self.position
+      return
+    }
+    hasMoved = lastPosition?.distance(to: position) ?? 0 > 0.3
+    lastPosition = position
   }
 }
