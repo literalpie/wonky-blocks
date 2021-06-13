@@ -46,7 +46,7 @@ class WonkyGameViewController: UIViewController, SKSceneDelegate {
     lastUpdateTime = currentTime
 
     if !gameState.paused {
-      physicsController.handleKeyEvents(delta: delta)
+      physicsController.handleKeyEvents(delta: CGFloat(delta))
     }
   }
 
