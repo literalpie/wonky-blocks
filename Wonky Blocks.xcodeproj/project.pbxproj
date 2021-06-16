@@ -78,6 +78,7 @@
 		45BEC135244E5D6400B38F83 /* SwiftClipperPath+asCgPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftClipperPath+asCgPath.swift"; sourceTree = "<group>"; };
 		45CFA6FC2590FA42000509BB /* Screenshots-instructions.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Screenshots-instructions.md"; sourceTree = "<group>"; };
 		45CFA6FF25910D7E000509BB /* app-store-description.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "app-store-description.md"; sourceTree = "<group>"; };
+		45DC24CA267AC46100DEA9C3 /* download-on-the-ios-app-store.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = "download-on-the-ios-app-store.svg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				45332F4C24ECA5D900F7A72C /* preview.gif */,
+				45DC24CA267AC46100DEA9C3 /* download-on-the-ios-app-store.svg */,
 			);
 			path = Documentation;
 			sourceTree = "<group>";
@@ -450,7 +452,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Wonky Blocks/Wonky Blocks.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_ASSET_PATHS = "\"Wonky Blocks/Preview Content\"";
 				DEVELOPMENT_TEAM = Z6E4CU9G46;
 				ENABLE_PREVIEWS = YES;
@@ -460,6 +462,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.literalpie.wonky-blocks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
@@ -474,7 +477,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Wonky Blocks/Wonky Blocks.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_ASSET_PATHS = "\"Wonky Blocks/Preview Content\"";
 				DEVELOPMENT_TEAM = Z6E4CU9G46;
 				ENABLE_PREVIEWS = YES;
@@ -484,6 +487,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.literalpie.wonky-blocks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
