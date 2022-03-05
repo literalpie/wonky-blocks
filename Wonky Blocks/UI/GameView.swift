@@ -22,7 +22,11 @@ struct GameView: UIViewControllerRepresentable {
     _ uiViewController: WonkyGameViewController,
     context: Context
   ) {
-    uiViewController.spriteKitView.isPaused = gameState.paused
+    // pausing the scene causes a delay when unpausing. We'll stop the phyiscs instead to avoid this.
+    // unfortunately, this means there will be consistent CPU usage while the app is running.
+    // I tried pausing only when the window is inactive,
+    //but macOS only counts as inactive when you minimize - and spritekit already pauses when this happens.
+    uiViewController.spriteKitView.scene?.physicsWorld.speed = gameState.paused ? 0.0 : 1.0
   }
 
   static func dismantleUIViewController(

@@ -92,6 +92,7 @@ class WonkyGameState: ObservableObject, JoystickState {
     score = 0
     lineCount = 0
     level = 1
+    paused = false
     gameOver = false
     newHighScore = false
     activeTet = nextTet
