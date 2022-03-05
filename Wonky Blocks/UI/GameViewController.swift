@@ -71,7 +71,7 @@ class WonkyGameViewController: UIViewController, SKSceneDelegate {
     self.rows.forEach { self.spriteKitView.scene?.addChild($0) }
     view.ignoresSiblingOrder = true
 
-    // update row indicators (this block doesn't remove ant rows)
+    // update row indicators (this block doesn't remove any rows)
     let timerCan = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect().sink { (_) in
       if !self.gameState.paused {
         self.checkForMovedTetronimos()
@@ -143,6 +143,7 @@ class WonkyGameViewController: UIViewController, SKSceneDelegate {
     }
     allCans.append(contactCan)
     let activeTetCan = self.gameState.$activeTet.sink { (newActive) in
+      print("new active")
       let newPieceXPosition =
         (CGFloat(WonkyGameBoard.width) / 2) + WonkyRowIndicator.indicatorWidth - newActive.center.x
       newActive.position = CGPoint(x: newPieceXPosition, y: CGFloat(WonkyGameBoard.height))

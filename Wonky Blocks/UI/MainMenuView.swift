@@ -19,6 +19,11 @@ struct MainMenuView: View {
       // for keyboard shortcut
       if #available(macCatalyst 14.0, iOS 14.0, *) {
         Button("Start Game") {
+          if (gameState.gameStarted) {
+            // sometimes if you hit enter when the game is first started,
+            // it will try to start the game twice.
+            return
+          }
           gameState.resetGame()
           gameState.gameStarted = true
         }
